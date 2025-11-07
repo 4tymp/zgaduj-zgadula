@@ -1,0 +1,3 @@
+GIERKA ZGADUJ ZGADULA!
+
+obiecuje ze kiedys tutaj cos bedzie...
