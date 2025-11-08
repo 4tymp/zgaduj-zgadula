@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <cstdlib> // biblioteka od randomowosci
 #include <ctime> // biblioteka dla time (tez potrzebne do rand)
+
 
 void czysci(){ // funkcja czyszczaca ekran ( portable! )
     for (int i=0;i<50;i++){
@@ -46,7 +48,7 @@ int poziomtrudnosci(){ //funkcja difficulty picker
     return trudnosc;
 }
 
-std::string glownagra(){
+void glownagra(){
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
     int ilprob = 0; // ilosc prob zgadniecia
@@ -131,8 +133,39 @@ std::string glownagra(){
     std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
     std::cin >> imie; // chyba vector lepiej co?
+
 }
+    
 
 int main(){
-    //tutaj menu, ale najpierw chyba vector w glownejgrze
+    int wybortryb;
+
+    //menu wyboru trybu (zapetla sie caly czas)
+    while (1){
+        czysci();
+
+        std::cout << "▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄      " << "\n";
+        std::cout << "▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄    " << "\n";
+        std::cout << "░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░   ░██           ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░▒██░   ▒██  ▀█▄  " << "\n";
+        std::cout << "  ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▓██▄██▓            ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▒██░   ░██▄▄▄▄██ " << "\n";
+        std::cout << "▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓  ▓███▒           ▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓ ░██████▒▓█   ▓██▒" << "\n";
+        std::cout << "░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒  ▒▓▒▒░           ░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░▓  ░▒▒   ▓▒█░" << "\n";
+        std::cout << "░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░  ▒ ░▒░           ░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░ ░ ░ ▒  ░ ▒   ▒▒ ░" << "\n";
+        std::cout << "░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░  ░ ░ ░           ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░   ░ ░    ░   ▒   " << "\n";
+        std::cout << "  ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░" << "\n";
+        std::cout << "░                           ░                                ░                           ░                                " << "\n";
+        std::cout << "\n"; // 122 whitespace jakby co
+        std::cout << "                                     (1)ROZPOCZNIJ GRĘ(1)        (2)TABELA WYNIKOW(2)                                     " << "\n"; 
+        // tylko jesli jest jakis wynik ma sie pojawic 2!
+        std::cin >> wybortryb;
+        
+        if(wybortryb == 1){
+        glownagra();
+        }   
+    } 
+    
 }
+
+
+                   
+
