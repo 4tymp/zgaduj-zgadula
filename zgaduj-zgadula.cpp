@@ -39,11 +39,48 @@ int poziomtrudnosci(){ //funkcja difficulty picker
 
 int main(){
     //zbiorowisko zmiennych
-    
+    int cel; //cel w ktory bedziemy strzelac
+    int ilprob = 1; // ilosc prob zgadniecia, domyslnie 1.
+    int proba; // tutaj beda podstawiane proby zgadywania.
+
     //poczatek kodu,
     int poztrud = poziomtrudnosci();
-    // dokoncz bro
-    std::cout << "poziom wybrany " << poztrud << "\n";
+
+    //ustawianie celu ktory bedziemy zgadywac w zaleznosci od poziomu trudnosci.
+    if (poztrud == 1){
+
+        cel = rand() % 50 + 1; // łatwy, 1-50
+
+    } else if(poztrud == 2){
+
+        cel = rand() % 100 + 1; // średni, 1-100
+
+    } else if(poztrud == 3){
+
+        cel = rand() % 250 + 1; // trudny, 1-250
+
+    }
+
+    // rozpoczecie zgadywania
+    while(proba != cel){
+
+        std::cout << "ilość prób: " << ilprob << "\n";
+        std::cout << "zgadnij liczbę w przedziale ";
+
+        if(poztrud == 1){
+            std::cout << "1-50\n";
+        }else if (poztrud == 2){
+            std::cout << "1-100\n";
+        }else if (poztrud == 3){
+            std::cout << "1-250\n";
+        }
+
+        std::cin >> proba;
+
+        ilprob++;
+    }
+
+    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
     
 
 }
