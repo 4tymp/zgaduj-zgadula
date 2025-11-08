@@ -136,19 +136,7 @@ std::string glownagra(){
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
     std::cin >> imie;
 
-    if(poztrud == 1){
-            textrud = "łatwy";
-        }else if(poztrud == 2){
-            textrud = "średni";
-        }else if(poztrud == 3){
-            textrud = "trudny";
-        }
-    
-    std::string strproby = std::to_string(ilprob); //konwersja ilosci prob w stringa ktorego mozemy returnowac 
-    
-    wynik ="nazwa: " + imie + " | ilość prob: " + strproby + " | poziom trudnosci: " + textrud;
-    
-    return wynik;
+    return imie;
 
 }
     
@@ -156,11 +144,14 @@ std::string glownagra(){
 int main(){
     int wybortryb;
     std::string wynik;
+
     std::vector<std::string> tabela;
 
     //menu wyboru trybu (zapetla sie caly czas)
     while (1){
         czysci();
+
+        wybortryb = 0;// resetuje zmienna wybortryb zeby dalo sie wejsc kilka razy pod rzad w wybrany ekran
 
         std::cout << "▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄      " << "\n";
         std::cout << "▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄    " << "\n";
@@ -192,7 +183,9 @@ int main(){
 
         // caly drugi ekran z tabela wynikow
         if(wybortryb == 2 && tabela.size() > 0){
-            int tabext;
+            czysci();
+
+            int tabext = 1; // trzeba bylo dodac ze warte jest 1, bo na 0 wychodzi i nie dalo sie wrocic do ekranu. 
 
             while(tabext != 0){
 
@@ -211,7 +204,7 @@ int main(){
                 
 
                 for(int i = 0; i < 5 ; i++){
-                    std::cout << "                                           "; //43 whitespace
+                    std::cout << "                    "; //20 whitespace
                     std::cout << i+1 << ". ";
                     std::cout << tabela[i];
                     std::cout << "\n";
