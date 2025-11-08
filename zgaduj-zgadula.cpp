@@ -46,13 +46,15 @@ int poziomtrudnosci(){ //funkcja difficulty picker
     return trudnosc;
 }
 
-int main(){
+std::string glownagra(){
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
     int ilprob = 0; // ilosc prob zgadniecia
     int proba = 0; // tutaj beda podstawiane proby zgadywania.
+    std::string imie; // imie do wynikow (moze vector?)
 
     //poczatek kodu
+    czysci();
 
     int poztrud = poziomtrudnosci(); // wpisanie poziomu trudnosci z funkcji do zmiennej poztrud
     
@@ -124,7 +126,13 @@ int main(){
         ilprob++;
     }
 
-    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
-    
+    czysci();
 
+    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
+    std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
+    std::cin >> imie; // chyba vector lepiej co?
+}
+
+int main(){
+    //tutaj menu, ale najpierw chyba vector w glownejgrze
 }
