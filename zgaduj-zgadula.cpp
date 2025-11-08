@@ -11,19 +11,6 @@ void czysci(){ // funkcja czyszczaca ekran ( portable! )
     }
 }
 
-std::string konwertertrud(int tr){
-    //ustawia odpowiedni string w zaleznosci od podanego poziomu trudnosci.
-    std::string strtrud;
-        if(tr == 1){
-            strtrud = "łatwy";
-        }else if(tr == 2){
-            strtrud = "średni";
-        }else if(tr == 3){
-            strtrud = "trudny";
-        }
-        return strtrud;
-}
-
 std::string losowawiadomosc(int los,int &proba){
     std::string wiad;
 
@@ -101,10 +88,9 @@ std::string losowawiadomosc(int los,int &proba){
     return wiad;
 }
 
-int poziomtrudnosci(){ //funkcja difficulty picker
-    int trudnosc;
+std::string poziomtrudnosci(){ //funkcja difficulty picker
+    std::string trudnosc;
     std::string potwierdztrudnosc = "n";
-    std::string podtrudnosc;
 
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
         czysci();
@@ -112,31 +98,22 @@ int poziomtrudnosci(){ //funkcja difficulty picker
         std::cout << "wpisz poziom trudności:\n";
         std::cout << "latwy   sredni   trudny\n";
 
-        std::cin >> podtrudnosc;
+        std::cin >> trudnosc;
         
-        if(podtrudnosc == "latwy"){
-            trudnosc = 1;
-        }else if(podtrudnosc == "sredni"){
-            trudnosc = 2;
-        }else if(podtrudnosc == "trudny"){
-            trudnosc = 3;
-        }else{
+        
             //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
-            while(podtrudnosc != "latwy" &&  podtrudnosc != "sredni" && podtrudnosc != "trudny"){   
+            while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
                 czysci(); 
                 std::cout << "wybrano błędny poziom trudności.\n";
                 std::cout << "podaj poziom trudności jeszcze raz.\n";
-                std::cin >> podtrudnosc;
+                std::cin >> trudnosc;
             }
-        }
+        
        
-
-        //konwersja z int na nazwe poziomu trudnosci
-        std::string strtrud = konwertertrud(trudnosc);
     
         //potwierdzenie wyboru
         czysci();
-        std::cout << "\nwybrałeś " << strtrud << " poziom trudności.\n";
+        std::cout << "\nwybrałeś " << trudnosc << " poziom trudności.\n";
         std::cout << "zgadza się? t/n\n";
         std::cin >> potwierdztrudnosc;
 
@@ -145,7 +122,7 @@ int poziomtrudnosci(){ //funkcja difficulty picker
 }
 
 // glowna funkcja gry zgadywania
-void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
+void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
     
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
@@ -161,15 +138,15 @@ void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzie
     srand(time(0)); // ustawienie ziarna dla losowosci ( time(0) zwraca aktualny czas w sekundach )
 
     //ustawianie celu ktory bedziemy zgadywac w zaleznosci od poziomu trudnosci.
-    if (poztrud == 1){
+    if (poztrud == "latwy"){
 
         cel = rand() % 50 + 1; // łatwy, 1-50
 
-    } else if(poztrud == 2){
+    } else if(poztrud == "sredni"){
 
         cel = rand() % 100 + 1; // średni, 1-100
 
-    } else if(poztrud == 3){
+    } else if(poztrud == "trudny"){
 
         cel = rand() % 250 + 1; // trudny, 1-250
 
@@ -184,11 +161,11 @@ void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzie
 
         //prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "zgadnij liczbę w przedziale ";
-        if(poztrud == 1){
+        if(poztrud == "latwy"){
             std::cout << "1-50\n";
-        }else if (poztrud == 2){
+        }else if (poztrud == "sredni"){
             std::cout << "1-100\n";
-        }else if (poztrud == 3){
+        }else if (poztrud == "trudny"){
             std::cout << "1-250\n";
         }
 
@@ -207,17 +184,17 @@ void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzie
 
 
         //sprawdzenie czy proba jest w przedziale poziomu trudnosci
-        if(poztrud == 1){
+        if(poztrud == "latwy"){
             while(proba < 1 || proba > 50){
                 std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
             }
-        }else if (poztrud == 2){
+        }else if (poztrud == "sredni"){
             while(proba < 1 || proba > 100){
                 std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
             }
-        }else if (poztrud == 3){
+        }else if (poztrud == "trudny"){
             while(proba < 1 || proba > 250){
                 std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
@@ -280,18 +257,16 @@ int main(){
             // zmienne z funkcji glownagra, zmienione po referencji
             int proby;
             std::string gracz;
-            int trud;
+            std::string trud;
 
             //odpalanie glownejgry i wyciaganie z niej jej zmiennych przy uzyciu referencji
             glownagra(gracz, proby, trud);
 
-            //konwersja z int na string poziomu trudnosci
-            std::string strtrud = konwertertrud(trud); 
             
             // dodawanie wyniku z gry do vectorow
             tabgracz.push_back(gracz);
             tabproby.push_back(proby);
-            tabtrud.push_back(strtrud);
+            tabtrud.push_back(trud);
         }   
 
         // caly drugi ekran z tabela wynikow mozna odpalic dopiero jesli w vektorze cos jest
