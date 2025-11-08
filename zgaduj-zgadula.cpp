@@ -54,6 +54,8 @@ std::string glownagra(){
     int ilprob = 0; // ilosc prob zgadniecia
     int proba = 0; // tutaj beda podstawiane proby zgadywania.
     std::string imie; // imie do wynikow (moze vector?)
+    std::string wynik; // wynik do returna
+    std::string textrud; // potrzebne do returna
 
     //poczatek kodu
     czysci();
@@ -132,9 +134,21 @@ std::string glownagra(){
 
     std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
-    std::cin >> imie; // chyba vector lepiej co?
+    std::cin >> imie;
 
-    return imie;
+    if(poztrud == 1){
+            textrud = "łatwy";
+        }else if(poztrud == 2){
+            textrud = "średni";
+        }else if(poztrud == 3){
+            textrud = "trudny";
+        }
+    
+    std::string strproby = std::to_string(ilprob); //konwersja ilosci prob w stringa ktorego mozemy returnowac 
+    
+    wynik ="nazwa: " + imie + " | ilość prob: " + strproby + " | poziom trudnosci: " + textrud;
+    
+    return wynik;
 
 }
     
@@ -168,14 +182,45 @@ int main(){
             std::cout << "                                                 (1)ROZPOCZNIJ GRĘ(1)                                                 " << "\n";
         }
         
-
+        //input wybor trybu
         std::cin >> wybortryb;
-        
+
         if(wybortryb == 1){
             wynik = glownagra();
-            tabela.push_back(wynik);
+            tabela.push_back(wynik);// dodawanie wyniku z gry do vectora tabela
         }   
+
+        // caly drugi ekran z tabela wynikow
         if(wybortryb == 2 && tabela.size() > 0){
+            int tabext;
+
+            while(tabext != 0){
+
+                std::cout << "                                ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                  " << "\n";
+                std::cout << "                                ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                  " << "\n";
+                std::cout << "                                ▒ ▓██░ ▒░▒██░  ██▒▓██░ ██▓▒   ▒████ ░▒██▒ ▓██  █▒░▒███                                    " << "\n";
+                std::cout << "                                ░ ▓██▓ ░ ▒██   ██░▒██▄█▓▒ ▒   ░▓█▒  ░░██░  ▒██ █░░▒▓█  ▄                                  " << "\n";
+                std::cout << "                                  ▒██▒ ░ ░ ████▓▒░▒██▒ ░  ░   ░▒█░   ░██░   ▒▀█░  ░▒████▒                                 " << "\n";
+                std::cout << "                                  ▒ ░░   ░ ▒░▒░▒░ ▒▓▒░ ░  ░    ▒ ░   ░▓     ░ ▐░  ░░ ▒░ ░                                 " << "\n";
+                std::cout << "                                    ░      ░ ▒ ▒░ ░▒ ░         ░      ▒ ░   ░ ░░   ░ ░  ░                                 " << "\n";
+                std::cout << "                                  ░      ░ ░ ░ ▒  ░░           ░ ░    ▒ ░     ░░     ░                                    " << "\n";
+                std::cout << "                                             ░ ░                      ░        ░     ░  ░                                 " << "\n";
+                std::cout << "                                                                      ░                                                   " << "\n";
+                std::cout << "\n";
+
+                
+
+                for(int i = 0; i < 5 ; i++){
+                    std::cout << "                                           "; //43 whitespace
+                    std::cout << i+1 << ". ";
+                    std::cout << tabela[i];
+                    std::cout << "\n";
+                }
+                std::cout << "                                                    (0)wyjdz(0)                                                     " << "\n";
+
+                std::cin >> tabext;
+
+            }
 
         }
     } 
