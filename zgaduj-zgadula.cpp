@@ -11,9 +11,21 @@ void czysci(){ // funkcja czyszczaca ekran ( portable! )
     }
 }
 
+std::string konwertertrud(int tr){
+    //ustawia odpowiedni string w zaleznosci od podanego poziomu trudnosci.
+    std::string strtrud;
+        if(tr == 1){
+            strtrud = "łatwy";
+        }else if(tr == 2){
+            strtrud = "średni";
+        }else if(tr == 3){
+            strtrud = "trudny";
+        }
+        return strtrud;
+}
+
 int poziomtrudnosci(){ //funkcja difficulty picker
     int trudnosc;
-    std::string textrudnosc;
     std::string potwierdztrudnosc = "n";
 
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
@@ -30,17 +42,11 @@ int poziomtrudnosci(){ //funkcja difficulty picker
             std::cin >> trudnosc;
         }
 
-        //ustawia odpowiedni string w zaleznosci od podanego poziomu trudnosci.
-        if(trudnosc == 1){
-            textrudnosc = "łatwy";
-        }else if(trudnosc == 2){
-            textrudnosc = "średni";
-        }else if(trudnosc == 3){
-            textrudnosc = "trudny";
-        }
-
+        //konwersja z int na nazwe poziomu trudnosci
+        std::string strtrud = konwertertrud(trudnosc);
+    
         //potwierdzenie wyboru
-        std::cout << "\nwybrałeś " << textrudnosc << " poziom trudności.\n";
+        std::cout << "\nwybrałeś " << strtrud << " poziom trudności.\n";
         std::cout << "zgadza się? t/n\n";
         std::cin >> potwierdztrudnosc;
 
@@ -48,19 +54,19 @@ int poziomtrudnosci(){ //funkcja difficulty picker
     return trudnosc;
 }
 
-std::string glownagra(){
+// glowna funkcja gry zgadywania
+void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
+    
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
-    int ilprob = 0; // ilosc prob zgadniecia
     int proba = 0; // tutaj beda podstawiane proby zgadywania.
-    std::string imie; // imie do wynikow (moze vector?)
-    std::string wynik; // wynik do returna
-    std::string textrud; // potrzebne do returna
 
     //poczatek kodu
     czysci();
 
-    int poztrud = poziomtrudnosci(); // wpisanie poziomu trudnosci z funkcji do zmiennej poztrud
+    ilprob = 0; // ustawia na start ilosc prob na 0
+
+    poztrud = poziomtrudnosci(); // wpisanie poziomu trudnosci z funkcji do zmiennej poztrud
     
     srand(time(0)); // ustawienie ziarna dla losowosci ( time(0) zwraca aktualny czas w sekundach )
 
@@ -136,16 +142,18 @@ std::string glownagra(){
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
     std::cin >> imie;
 
-    return imie;
-
-}
     
 
-int main(){
-    int wybortryb;
-    std::string wynik;
+}
 
-    std::vector<std::string> tabela;
+int main(){
+    int wybortryb; // potrzebne do wybierania ekranu w menu
+
+    //vectory
+    std::vector<std::string> tabgracz;
+    std::vector<int> tabproby;
+    std::vector<std::string> tabtrud;
+    
 
     //menu wyboru trybu (zapetla sie caly czas)
     while (1){
@@ -167,8 +175,8 @@ int main(){
         std::cout << "                            wcisnij odpowiedni przycisk zeby wybrac, zatwierdz klawiszem enter                            " << "\n";
         
         //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
-        if(tabela.size() > 0){
-        std::cout << "                                     (1)ROZPOCZNIJ GRĘ(1)        (2)TABELA WYNIKOW(2)                                     " << "\n"; 
+        if(tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
+            std::cout << "                                     (1)ROZPOCZNIJ GRĘ(1)        (2)TABELA WYNIKOW(2)                                     " << "\n"; 
         }else{
             std::cout << "                                                 (1)ROZPOCZNIJ GRĘ(1)                                                 " << "\n";
         }
@@ -177,12 +185,25 @@ int main(){
         std::cin >> wybortryb;
 
         if(wybortryb == 1){
-            wynik = glownagra();
-            tabela.push_back(wynik);// dodawanie wyniku z gry do vectora tabela
+            // zmienne z funkcji glownagra, zmienione po referencji
+            int proby;
+            std::string gracz;
+            int trud;
+
+            //odpalanie glownejgry i wyciaganie z niej jej zmiennych przy uzyciu referencji
+            glownagra(gracz, proby, trud);
+
+            //konwersja z int na string poziomu trudnosci
+            std::string strtrud = konwertertrud(trud); 
+            
+            // dodawanie wyniku z gry do vectorow
+            tabgracz.push_back(gracz);
+            tabproby.push_back(proby);
+            tabtrud.push_back(strtrud);
         }   
 
-        // caly drugi ekran z tabela wynikow
-        if(wybortryb == 2 && tabela.size() > 0){
+        // caly drugi ekran z tabela wynikow mozna odpalic dopiero jesli w vektorze cos jest
+        if(wybortryb == 2 && tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
             czysci();
 
             int tabext = 1; // trzeba bylo dodac ze warte jest 1, bo na 0 wychodzi i nie dalo sie wrocic do ekranu. 
@@ -206,10 +227,12 @@ int main(){
                 for(int i = 0; i < 5 ; i++){
                     std::cout << "                    "; //20 whitespace
                     std::cout << i+1 << ". ";
-                    std::cout << tabela[i];
+                    std::cout << "gracz: " << tabgracz[i];
+                    std::cout << " ilość prob: " << tabproby[i];
+                    std::cout << " poziom trudności: " << tabtrud[i];
                     std::cout << "\n";
                 }
-                std::cout << "                                                    (0)wyjdz(0)                                                     " << "\n";
+                std::cout << "                                                      (0)wyjdz(0)                                                         " << "\n";
 
                 std::cin >> tabext;
 
