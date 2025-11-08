@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib> // biblioteka od randomowosci
+#include <ctime> // biblioteka dla time (tez potrzebne do rand)
 
 int poziomtrudnosci(){ //funkcja difficulty picker
     int trudnosc;
@@ -40,11 +42,14 @@ int poziomtrudnosci(){ //funkcja difficulty picker
 int main(){
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
-    int ilprob = 1; // ilosc prob zgadniecia, domyslnie 1.
-    int proba; // tutaj beda podstawiane proby zgadywania.
+    int ilprob = 0; // ilosc prob zgadniecia
+    int proba = 0; // tutaj beda podstawiane proby zgadywania.
 
-    //poczatek kodu,
-    int poztrud = poziomtrudnosci();
+    //poczatek kodu
+
+    int poztrud = poziomtrudnosci(); // wpisanie poziomu trudnosci z funkcji do zmiennej poztrud
+    
+    srand(time(0)); // ustawienie ziarna dla losowosci ( time(0) zwraca aktualny czas w sekundach )
 
     //ustawianie celu ktory bedziemy zgadywac w zaleznosci od poziomu trudnosci.
     if (poztrud == 1){
@@ -63,10 +68,11 @@ int main(){
 
     // rozpoczecie zgadywania
     while(proba != cel){
+        std::cout << "\n\n\n"; // clearowanie terminala
 
+        // podaje ilosc prob i prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "ilość prób: " << ilprob << "\n";
         std::cout << "zgadnij liczbę w przedziale ";
-
         if(poztrud == 1){
             std::cout << "1-50\n";
         }else if (poztrud == 2){
@@ -75,8 +81,28 @@ int main(){
             std::cout << "1-250\n";
         }
 
-        std::cin >> proba;
+        std::cin >> proba; // pierwsza proba
 
+
+        //sprawdzenie czy proba jest w przedziale poziomu trudnosci
+        if(poztrud == 1){
+            while(proba < 1 || proba > 50){
+                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cin >> proba;
+            }
+        }else if (poztrud == 2){
+            while(proba < 1 || proba > 100){
+                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cin >> proba;
+            }
+        }else if (poztrud == 3){
+            while(proba < 1 || proba > 250){
+                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cin >> proba;
+            }
+        }
+
+        //dodanie 1 do ilosci prob na koniec petli
         ilprob++;
     }
 
