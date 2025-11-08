@@ -48,7 +48,7 @@ int poziomtrudnosci(){ //funkcja difficulty picker
     return trudnosc;
 }
 
-void glownagra(){
+std::string glownagra(){
     //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
     int ilprob = 0; // ilosc prob zgadniecia
@@ -134,11 +134,15 @@ void glownagra(){
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
     std::cin >> imie; // chyba vector lepiej co?
 
+    return imie;
+
 }
     
 
 int main(){
     int wybortryb;
+    std::string wynik;
+    std::vector<std::string> tabela;
 
     //menu wyboru trybu (zapetla sie caly czas)
     while (1){
@@ -155,13 +159,25 @@ int main(){
         std::cout << "  ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░" << "\n";
         std::cout << "░                           ░                                ░                           ░                                " << "\n";
         std::cout << "\n"; // 122 whitespace jakby co
+        std::cout << "                            wcisnij odpowiedni przycisk zeby wybrac, zatwierdz klawiszem enter                            " << "\n";
+        
+        //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
+        if(tabela.size() > 0){
         std::cout << "                                     (1)ROZPOCZNIJ GRĘ(1)        (2)TABELA WYNIKOW(2)                                     " << "\n"; 
-        // tylko jesli jest jakis wynik ma sie pojawic 2!
+        }else{
+            std::cout << "                                                 (1)ROZPOCZNIJ GRĘ(1)                                                 " << "\n";
+        }
+        
+
         std::cin >> wybortryb;
         
         if(wybortryb == 1){
-        glownagra();
+            wynik = glownagra();
+            tabela.push_back(wynik);
         }   
+        if(wybortryb == 2 && tabela.size() > 0){
+
+        }
     } 
     
 }
