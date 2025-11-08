@@ -15,13 +15,14 @@ int poziomtrudnosci(){ //funkcja difficulty picker
     std::string potwierdztrudnosc = "n";
 
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
-        std::cout << "wybierz poziom trudności:\n";
+        std::cout << "\nwybierz poziom trudności:\n";
         std::cout << "(1)łatwy(1)   (2)średni(2)   (3)trudny(3)\n";
 
         std::cin >> trudnosc;
         
         //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniej liczby
-        while(trudnosc < 1 || trudnosc > 3){     
+        while(trudnosc < 1 || trudnosc > 3){   
+            std::cout << "\n";  
             std::cout << "wybrano błędny poziom trudności.\n";
             std::cout << "podaj poziom trudności jeszcze raz.\n";
             std::cin >> trudnosc;
@@ -37,7 +38,7 @@ int poziomtrudnosci(){ //funkcja difficulty picker
         }
 
         //potwierdzenie wyboru
-        std::cout << "wybrałeś " << textrudnosc << " poziom trudności.\n";
+        std::cout << "\nwybrałeś " << textrudnosc << " poziom trudności.\n";
         std::cout << "zgadza się? t/n\n";
         std::cin >> potwierdztrudnosc;
 
@@ -76,8 +77,10 @@ int main(){
     while(proba != cel){
         czysci();// clearowanie terminala
 
-        // podaje ilosc prob i prosi o zgadniecie liczby w odpowiednim przedziale
-        std::cout << "ilość prób: " << ilprob << "\n";
+        // podaje ilosc prob
+        std::cout << "ilość prób: " << ilprob << "\n\n";
+
+        //prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "zgadnij liczbę w przedziale ";
         if(poztrud == 1){
             std::cout << "1-50\n";
@@ -87,23 +90,32 @@ int main(){
             std::cout << "1-250\n";
         }
 
+        // informuje czy cel jest wiekszy czy mniejszy od proby
+        if (ilprob > 0){
+            if(cel > proba){
+                std::cout << "zgadywana liczba jest większa od " << proba << "\n";
+            }else if(cel < proba){
+                std::cout << "zgadywana liczba jest mniejsza od " << proba << "\n";
+            }
+        }
+
         std::cin >> proba; // pierwsza proba
 
 
         //sprawdzenie czy proba jest w przedziale poziomu trudnosci
         if(poztrud == 1){
             while(proba < 1 || proba > 50){
-                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
             }
         }else if (poztrud == 2){
             while(proba < 1 || proba > 100){
-                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
             }
         }else if (poztrud == 3){
             while(proba < 1 || proba > 250){
-                std::cout << "wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
                 std::cin >> proba;
             }
         }
