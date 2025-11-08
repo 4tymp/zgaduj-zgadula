@@ -24,6 +24,83 @@ std::string konwertertrud(int tr){
         return strtrud;
 }
 
+std::string losowawiadomosc(int los,int &proba){
+    std::string wiad;
+
+    std::string strproba = std::to_string(proba);
+    
+    switch (los){
+        //za malo
+        case 0:
+        wiad = "pudło! podana liczba jest za mała...";
+        break;
+        case 1:
+        wiad = "pff, do celu jeszcze ci sporo brakuje! wszystko jeszcze przed tobą.";
+        break;
+        case 2:
+        wiad = strproba + "? pierwsze slysze. musisz troche urosnac maluchu!";
+        break;
+        case 3:
+        wiad = "zeby wyruszyc w droge nalezy zebrac druzyne. twoja jest za mala.";
+        break;
+        case 4:
+        wiad = "musisz dodac do " + strproba + " zeby dostac to, czego szukasz.";
+        break;
+        case 5:
+        wiad = "szukana liczba jest wieksza od " + strproba;
+        break;
+        case 6:
+        wiad = strproba + " jest mniejsze od celu.";
+        break;
+        case 7:
+        wiad = "za małoooooooo";
+        break;
+        case 8:
+        wiad = "cel tuz przed toba! nie poddawaj sie!";
+        break;
+        case 9:
+        wiad = "nigdy nie zgadniesz. ale podpowiem, ze celujesz za nisko.";
+        break;
+
+        //za duzo
+        case 10:
+        wiad = "pudło! podana liczba jest za mała...";
+        break;
+        case 11:
+        wiad = "zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac";
+        break;
+        case 12:
+        wiad = strproba + "? przerosles swoj cel! nie wiem jak, ale musisz sie skurczyc!";
+        break;
+        case 13:
+        wiad = "chcialbym dolaczyc do druzyny, ale twoja jest juz pelna i i tak za duza.";
+        break;
+        case 14:
+        wiad = "musisz odjac od " + strproba + " zeby dostac to, czego szukasz.";
+        break;
+        case 15:
+        wiad = strproba + " jest wieksze od celu.";
+        break;
+        case 16:
+        wiad = "szukana liczba jest mniejsza od " + strproba;
+        break;
+        case 17:
+        wiad = "za duzooooooooo";
+        break;
+        case 18:
+        wiad = "cel tuz za toba! nie poddawaj sie!";
+        break;
+        case 19:
+        wiad = "nigdy nie zgadniesz. ale podpowiem, ze celujesz za wysoko.";
+        break;
+        default:
+        wiad = "błędna liczba!";
+        break;
+    }
+
+    return wiad;
+}
+
 int poziomtrudnosci(){ //funkcja difficulty picker
     int trudnosc;
     std::string potwierdztrudnosc = "n";
@@ -103,12 +180,14 @@ void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzie
         }
 
         // informuje czy cel jest wiekszy czy mniejszy od proby
+        int loswiad; // losowa wiadomosc
         if (ilprob > 0){
             if(cel > proba){
-                std::cout << "zgadywana liczba jest większa od " << proba << "\n";
+                loswiad = rand() % 10;  
             }else if(cel < proba){
-                std::cout << "zgadywana liczba jest mniejsza od " << proba << "\n";
+                loswiad = rand() % 10 + 10;
             }
+            std::cout << losowawiadomosc(loswiad, proba) << "\n";
         }
 
         std::cin >> proba; // pierwsza proba
