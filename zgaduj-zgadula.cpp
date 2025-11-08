@@ -3,6 +3,12 @@
 #include <cstdlib> // biblioteka od randomowosci
 #include <ctime> // biblioteka dla time (tez potrzebne do rand)
 
+void czysci(){ // funkcja czyszczaca ekran ( portable! )
+    for (int i=0;i<50;i++){
+        std::cout << "\n";
+    }
+}
+
 int poziomtrudnosci(){ //funkcja difficulty picker
     int trudnosc;
     std::string textrudnosc;
@@ -68,7 +74,7 @@ int main(){
 
     // rozpoczecie zgadywania
     while(proba != cel){
-        std::cout << "\n\n\n"; // clearowanie terminala
+        czysci();// clearowanie terminala
 
         // podaje ilosc prob i prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "ilość prób: " << ilprob << "\n";
