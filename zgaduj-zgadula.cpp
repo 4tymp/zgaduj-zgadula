@@ -64,7 +64,7 @@ std::string losowawiadomosc(int los,int &proba){
 
         //za duzo
         case 10:
-        wiad = "pudło! podana liczba jest za mała...";
+        wiad = "pudło! podana liczba jest za duza...";
         break;
         case 11:
         wiad = "zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac";
@@ -104,25 +104,38 @@ std::string losowawiadomosc(int los,int &proba){
 int poziomtrudnosci(){ //funkcja difficulty picker
     int trudnosc;
     std::string potwierdztrudnosc = "n";
+    std::string podtrudnosc;
 
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
-        std::cout << "\nwybierz poziom trudności:\n";
-        std::cout << "(1)łatwy(1)   (2)średni(2)   (3)trudny(3)\n";
-
-        std::cin >> trudnosc;
+        czysci();
         
-        //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniej liczby
-        while(trudnosc < 1 || trudnosc > 3){   
-            std::cout << "\n";  
-            std::cout << "wybrano błędny poziom trudności.\n";
-            std::cout << "podaj poziom trudności jeszcze raz.\n";
-            std::cin >> trudnosc;
+        std::cout << "wpisz poziom trudności:\n";
+        std::cout << "latwy   sredni   trudny\n";
+
+        std::cin >> podtrudnosc;
+        
+        if(podtrudnosc == "latwy"){
+            trudnosc = 1;
+        }else if(podtrudnosc == "sredni"){
+            trudnosc = 2;
+        }else if(podtrudnosc == "trudny"){
+            trudnosc = 3;
+        }else{
+            //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
+            while(podtrudnosc != "latwy" &&  podtrudnosc != "sredni" && podtrudnosc != "trudny"){   
+                czysci(); 
+                std::cout << "wybrano błędny poziom trudności.\n";
+                std::cout << "podaj poziom trudności jeszcze raz.\n";
+                std::cin >> podtrudnosc;
+            }
         }
+       
 
         //konwersja z int na nazwe poziomu trudnosci
         std::string strtrud = konwertertrud(trudnosc);
     
         //potwierdzenie wyboru
+        czysci();
         std::cout << "\nwybrałeś " << strtrud << " poziom trudności.\n";
         std::cout << "zgadza się? t/n\n";
         std::cin >> potwierdztrudnosc;
@@ -226,7 +239,7 @@ void glownagra(std::string &imie, int &ilprob, int &poztrud){// referencje, dzie
 }
 
 int main(){
-    int wybortryb; // potrzebne do wybierania ekranu w menu
+    std::string wybortryb; // potrzebne do wybierania ekranu w menu
 
     //vectory
     std::vector<std::string> tabgracz;
@@ -238,7 +251,7 @@ int main(){
     while (1){
         czysci();
 
-        wybortryb = 0;// resetuje zmienna wybortryb zeby dalo sie wejsc kilka razy pod rzad w wybrany ekran
+        
 
         std::cout << "▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄      " << "\n";
         std::cout << "▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄    " << "\n";
@@ -251,19 +264,19 @@ int main(){
         std::cout << "  ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░" << "\n";
         std::cout << "░                           ░                                ░                           ░                                " << "\n";
         std::cout << "\n"; // 122 whitespace jakby co
-        std::cout << "                            wcisnij odpowiedni przycisk zeby wybrac, zatwierdz klawiszem enter                            " << "\n";
+        std::cout << "                             wpisz odpowiednia komende zeby wybrac, zatwierdz klawiszem enter                             " << "\n";
         
         //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
         if(tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
-            std::cout << "                                     (1)ROZPOCZNIJ GRĘ(1)        (2)TABELA WYNIKOW(2)                                     " << "\n"; 
+            std::cout << "                                   start - ROZPOCZNIJ GRĘ   tabela - TABELA WYNIKOW                                   " << "\n"; 
         }else{
-            std::cout << "                                                 (1)ROZPOCZNIJ GRĘ(1)                                                 " << "\n";
+            std::cout << "                                               start - ROZPOCZNIJ GRĘ                                                 " << "\n";
         }
         
         //input wybor trybu
         std::cin >> wybortryb;
 
-        if(wybortryb == 1){
+        if(wybortryb == "start"){
             // zmienne z funkcji glownagra, zmienione po referencji
             int proby;
             std::string gracz;
@@ -282,12 +295,12 @@ int main(){
         }   
 
         // caly drugi ekran z tabela wynikow mozna odpalic dopiero jesli w vektorze cos jest
-        if(wybortryb == 2 && tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
+        if(wybortryb == "tabela" && tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
             czysci();
 
-            int tabext = 1; // trzeba bylo dodac ze warte jest 1, bo na 0 wychodzi i nie dalo sie wrocic do ekranu. 
+            std::string tabext = ""; // trzeba bylo dodac ze warte jest 1, bo na 0 wychodzi i nie dalo sie wrocic do ekranu. 
 
-            while(tabext != 0){
+            while(tabext != "wyjdz"){
 
                 std::cout << "                                ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                  " << "\n";
                 std::cout << "                                ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                  " << "\n";
@@ -320,7 +333,7 @@ int main(){
                 //printowanie max top 5
                 for(int i = 0; i < top ; i++){
                     int j = indx[i]; // to jest posortowany indeks, to od niego bedziemy dawali wlasciwym wyswietleniom.
-                    std::cout << "                                                 "; //49 whitespace
+                    std::cout << "                                                 "; //49 whitespacow
                     std::cout << i+1 << ".\n";
                     std::cout << "                                                    ";
                     std::cout << "gracz: " << tabgracz[j] << "\n";
@@ -330,7 +343,7 @@ int main(){
                     std::cout << "poziom trudności: " << tabtrud[j] << "\n";
                 }
                 std::cout << "\n";
-                std::cout << "                                                      (0)wyjdz(0)                                                         " << "\n";
+                std::cout << "                                             wyjdz - POWROT DO MENU GLOWNEGO                                              " << "\n";
                 
                 //sluchanie wyjscia, jezeli wpisane bedzie 0 to wrocimy do menu
                 std::cin >> tabext;
@@ -341,7 +354,3 @@ int main(){
     } 
     
 }
-
-
-                   
-
