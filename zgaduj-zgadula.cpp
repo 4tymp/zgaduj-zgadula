@@ -222,18 +222,38 @@ int main(){
                 std::cout << "                                                                      ░                                                   " << "\n";
                 std::cout << "\n";
 
+                //sortowanie wedlug najlepszego wyniku po probach
+                std::vector<int> indx(tabproby.size());
+                for(int i = 0; i < indx.size(); i++){
+                    indx[i] = i; // ustawia wartosci vectora indx jako indexy ( [0,1,2] itp )
+                }
                 
 
-                for(int i = 0; i < 5 ; i++){
-                    std::cout << "                    "; //20 whitespace
-                    std::cout << i+1 << ". ";
-                    std::cout << "gracz: " << tabgracz[i];
-                    std::cout << " ilość prob: " << tabproby[i];
-                    std::cout << " poziom trudności: " << tabtrud[i];
-                    std::cout << "\n";
-                }
-                std::cout << "                                                      (0)wyjdz(0)                                                         " << "\n";
+                std::sort(indx.begin(), indx.end(), [&](int a, int b) { // a i b to indexy ktore bedziesz porownywac, [&] po prostu referencjuje wszystko dookola, zeby funkcja miala dostep poza swoim scopem.
+                    return tabproby[a] < tabproby[b]; // tutaj dzieje sei sortowanie, jezeli liczba pod indexem a jest mniejsza niz b, a idzie przed b. 
+                });
 
+                //jakby co to mega dlugo sie nad tym meczylem, zdecydownie najciezsza czesc calej gierki poki co XD jakby vector byl tylko jeden to luz, ale ze wszystkie trzy musza sie zgadzac to juz masakra byla
+
+                //mowi "pokaz ile masz, ale nie wiecej niz 5 na podstawie wielkosci vectora tabproby"
+                int top = std::min(5, int(tabproby.size()));
+
+                //printowanie max top 5
+                for(int i = 0; i < top ; i++){
+                    int j = indx[i]; // to jest posortowany indeks, to od niego bedziemy dawali wlasciwym wyswietleniom.
+                    std::cout << "                                                 "; //49 whitespace
+                    std::cout << i+1 << ".\n";
+                    std::cout << "                                                    ";
+                    std::cout << "gracz: " << tabgracz[j] << "\n";
+                    std::cout << "                                                     ";
+                    std::cout << "ilość prob: " << tabproby[j] << "\n";
+                    std::cout << "                                                      ";
+                    std::cout << "poziom trudności: " << tabtrud[j] << "\n";
+                }
+                std::cout << "\n";
+                std::cout << "                                                      (0)wyjdz(0)                                                         " << "\n";
+                
+                //sluchanie wyjscia, jezeli wpisane bedzie 0 to wrocimy do menu
                 std::cin >> tabext;
 
             }
