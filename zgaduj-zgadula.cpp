@@ -1,3 +1,7 @@
+/*siemanko. mozesz dziwic sie czemu czesto tutaj cos dziwnie wyglada, albo mozesz dziwic sie, ze cos daloby sie napisac o wiele lepiej z uzyciem zmiennych. juz tlumacze dlaczego tak jest: wszystko dla stylu! przez to jak ten projekt koniec koncow wyglada, wymiary wszystkiego w terminalu musialy sie zgadzac co do joty zeby
+zadna rura nie poszla poza swoje miejsce. dlatego tez przy zwyklym tekscie jest czesto tyle spacji!
+no i tyle ze wstepu, peace out ~ TmP*/
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -95,22 +99,25 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
         czysci();
         
-        std::cout << "wpisz poziom trudności:\n";
-        std::cout << "latwy   sredni   trudny\n";
+        std::cout << "                                                  wpisz poziom trudności:                                                 " << "\n";
+        std::cout << "                                                  latwy | sredni | trudny                                                 " << "\n";
 
         std::cin >> trudnosc;
         
         //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
         while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
             czysci(); 
-            std::cout << "wybrano błędny poziom trudności.\n";                std::cout << "podaj poziom trudności jeszcze raz.\n";
+            std::cout << "                                              wybrano błędny poziom trudności                                             " << "\n";                
+            std::cout << "                                            podaj poziom trudności jeszcze raz                                            " << "\n";
             std::cin >> trudnosc;
         }
         
         //potwierdzenie wyboru
         czysci();
-        std::cout << "\nwybrałeś " << trudnosc << " poziom trudności.\n";
-        std::cout << "zgadza się? t/n\n";
+        std::cout << "                                             wybrałeś " << trudnosc << " poziom trudności                                             ";
+        if(trudnosc == "latwy") std::cout << " "; //zrobione zeby szata graficzna sie zgadzala
+        std::cout  << "\n\n";
+        std::cout << "                                                      zgadza się? t/n                                                     " << "\n";
         std::cin >> potwierdztrudnosc;
 
     }
@@ -283,16 +290,13 @@ int main(){
                 std::cout << "                                                                      ░                                                   " << "\n";
                 std::cout << "\n";
 
-                //info o poziomie, tez napisane po debilowemu dla interfejsu
-                if (tabokno == "latwy"){
-                    std::cout << "                                          aktualnie wyswietlam tabele dla: latwy                                          " << "\n";
-                }else if (tabokno == "sredni"){
-                    std::cout << "                                          aktualnie wyswietlam tabele dla: sredni                                         " << "\n";
-                }else if (tabokno == "trudny"){
-                    std::cout << "                                          aktualnie wyswietlam tabele dla: trudny                                         " << "\n";
-                }
-
+                //info o poziomie
+                std::cout << "                                          aktualnie wyswietlam tabele dla: " << tabokno << "                                         ";
+                if (tabokno == "latwy") std::cout << " "; //piszemy takie rzeczy zeby szata graficzna sie zgadzala
+                std::cout << "\n";
+                
                 std::cout << "\n"; // estetyka
+
                 //sortowanie wedlug najlepszego wyniku po probach
                 std::vector<int> indx(tabproby.size());
                 for(int i = 0; i < indx.size(); i++){
