@@ -10,7 +10,7 @@ no i tyle ze wstepu, peace out ~ TmP*/
 
 
 void czysci(){ // funkcja czyszczaca ekran ( portable! )
-    for (int i=0;i<50;i++){
+    for (int i=0;i<100;i++){
         std::cout << "\n";
     }
 }
@@ -278,6 +278,8 @@ int main(){
 
             while(tabokno != "wyjdz"){
 
+                czysci();
+
                 std::cout << "                                ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                  " << "\n";
                 std::cout << "                                ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                  " << "\n";
                 std::cout << "                                ▒ ▓██░ ▒░▒██░  ██▒▓██░ ██▓▒   ▒████ ░▒██▒ ▓██  █▒░▒███                                    " << "\n";
@@ -315,14 +317,13 @@ int main(){
                 for(int i = 0; i < indx.size() && top < 5 ; i++){
                     int j = indx[i]; // to jest posortowany indeks, to od niego bedziemy dawali wlasciwym wyswietleniom.
                     if(tabtrud[j] == tabokno){
-                        std::cout << "                                                 "; //49 whitespacow
-                        std::cout << i+1 << ".\n";
-                        std::cout << "                                                    ";
-                        std::cout << "gracz: " << tabgracz[j] << "\n";
-                        std::cout << "                                                     ";
-                        std::cout << "ilość prob: " << tabproby[j] << "\n";
+                        std::cout << "                                                    "; //55 whitespacow
+                        std::cout << top + 1 << ".\n";
                         std::cout << "                                                      ";
-                        std::cout << "poziom trudności: " << tabtrud[j] << "\n";
+                        std::cout << "gracz: " << tabgracz[j] << "\n";
+                        std::cout << "                                                      ";
+                        std::cout << "ilość prob: " << tabproby[j] << "\n";
+                        
                         top++;
                     }
                 }
