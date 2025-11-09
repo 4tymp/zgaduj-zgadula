@@ -100,17 +100,13 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
 
         std::cin >> trudnosc;
         
+        //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
+        while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
+            czysci(); 
+            std::cout << "wybrano błędny poziom trudności.\n";                std::cout << "podaj poziom trudności jeszcze raz.\n";
+            std::cin >> trudnosc;
+        }
         
-            //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
-            while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
-                czysci(); 
-                std::cout << "wybrano błędny poziom trudności.\n";
-                std::cout << "podaj poziom trudności jeszcze raz.\n";
-                std::cin >> trudnosc;
-            }
-        
-       
-    
         //potwierdzenie wyboru
         czysci();
         std::cout << "\nwybrałeś " << trudnosc << " poziom trudności.\n";
@@ -211,8 +207,6 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
     std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
     std::cin >> imie;
 
-    
-
 }
 
 int main(){
@@ -273,9 +267,9 @@ int main(){
         if(wybortryb == "tabela" && tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
             czysci();
 
-            std::string tabext = ""; // trzeba bylo dodac ze warte jest 1, bo na 0 wychodzi i nie dalo sie wrocic do ekranu. 
+            std::string tabokno = "latwy"; //ustawia domyslnie, ze pojawia sie ekran latwych wynikow 
 
-            while(tabext != "wyjdz"){
+            while(tabokno != "wyjdz"){
 
                 std::cout << "                                ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                  " << "\n";
                 std::cout << "                                ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                  " << "\n";
@@ -289,6 +283,16 @@ int main(){
                 std::cout << "                                                                      ░                                                   " << "\n";
                 std::cout << "\n";
 
+                //info o poziomie, tez napisane po debilowemu dla interfejsu
+                if (tabokno == "latwy"){
+                    std::cout << "                                          aktualnie wyswietlam tabele dla: latwy                                          " << "\n";
+                }else if (tabokno == "sredni"){
+                    std::cout << "                                          aktualnie wyswietlam tabele dla: sredni                                         " << "\n";
+                }else if (tabokno == "trudny"){
+                    std::cout << "                                          aktualnie wyswietlam tabele dla: trudny                                         " << "\n";
+                }
+
+                std::cout << "\n"; // estetyka
                 //sortowanie wedlug najlepszego wyniku po probach
                 std::vector<int> indx(tabproby.size());
                 for(int i = 0; i < indx.size(); i++){
@@ -301,27 +305,44 @@ int main(){
                 });
 
                 //jakby co to mega dlugo sie nad tym meczylem, zdecydownie najciezsza czesc calej gierki poki co XD jakby vector byl tylko jeden to luz, ale ze wszystkie trzy musza sie zgadzac to juz masakra byla
-
-                //mowi "pokaz ile masz, ale nie wiecej niz 5 na podstawie wielkosci vectora tabproby"
-                int top = std::min(5, int(tabproby.size()));
-
+                
+                int top = 0; // musi istniec zeby pokazywalo max 5 wynikow, nie wiecej
                 //printowanie max top 5
-                for(int i = 0; i < top ; i++){
+                for(int i = 0; i < indx.size() && top < 5 ; i++){
                     int j = indx[i]; // to jest posortowany indeks, to od niego bedziemy dawali wlasciwym wyswietleniom.
-                    std::cout << "                                                 "; //49 whitespacow
-                    std::cout << i+1 << ".\n";
-                    std::cout << "                                                    ";
-                    std::cout << "gracz: " << tabgracz[j] << "\n";
-                    std::cout << "                                                     ";
-                    std::cout << "ilość prob: " << tabproby[j] << "\n";
-                    std::cout << "                                                      ";
-                    std::cout << "poziom trudności: " << tabtrud[j] << "\n";
+                    if(tabtrud[j] == tabokno){
+                        std::cout << "                                                 "; //49 whitespacow
+                        std::cout << i+1 << ".\n";
+                        std::cout << "                                                    ";
+                        std::cout << "gracz: " << tabgracz[j] << "\n";
+                        std::cout << "                                                     ";
+                        std::cout << "ilość prob: " << tabproby[j] << "\n";
+                        std::cout << "                                                      ";
+                        std::cout << "poziom trudności: " << tabtrud[j] << "\n";
+                        top++;
+                    }
                 }
-                std::cout << "\n";
+
+                //wyswietla sie jesli nie ma wyniku dla danego poziomu trudnosci. napisane w ten (dosyc glupi) sposob, zeby rameczka sie zgadzala.
+                if (top == 0 && tabokno == "latwy"){
+                    std::cout << "                                            brak wynikow dla poziomu latwego                                              " << "\n";
+                }else if (top == 0 && tabokno == "sredni"){
+                    std::cout << "                                            brak wynikow dla poziomu sredniego                                            " << "\n";
+                }else if (top == 0 && tabokno == "trudny"){
+                    std::cout << "                                            brak wynikow dla poziomu trudnego                                             " << "\n";
+                }
+                
+                std::cout << "\n"; // estetyka
+                
+                std::cout << "                               wybierz poziom trudnosci dla jakiego chcesz zobaczyc tabele:                               " << "\n";
+                std::cout << "                                                  latwy | sredni | trudny                                                 " << "\n";
+
+                std::cout << "\n"; //estetyka
+
                 std::cout << "                                             wyjdz - POWROT DO MENU GLOWNEGO                                              " << "\n";
                 
-                //sluchanie wyjscia, jezeli wpisane bedzie 0 to wrocimy do menu
-                std::cin >> tabext;
+                //sluchanie wyjscia, jezeli wpisane bedzie exit to wrocimy do menu, inaczej powinno wyswietlic dobra tabele
+                std::cin >> tabokno;
 
             }
 
