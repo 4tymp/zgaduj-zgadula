@@ -165,7 +165,7 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         //prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "zgadnij liczbę w przedziale ";
         if(poztrud == "latwy"){
-            std::cout << "1-50\n";
+            std::cout << "1-50 \n";
         }else if (poztrud == "sredni"){
             std::cout << "1-100\n";
         }else if (poztrud == "trudny"){
@@ -230,26 +230,31 @@ int main(){
         czysci();
 
         
-
-        std::cout << "▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄      " << "\n";
-        std::cout << "▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄    " << "\n";
-        std::cout << "░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░   ░██           ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░▒██░   ▒██  ▀█▄  " << "\n";
-        std::cout << "  ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▓██▄██▓            ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▒██░   ░██▄▄▄▄██ " << "\n";
-        std::cout << "▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓  ▓███▒           ▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓ ░██████▒▓█   ▓██▒" << "\n";
-        std::cout << "░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒  ▒▓▒▒░           ░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░▓  ░▒▒   ▓▒█░" << "\n";
-        std::cout << "░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░  ▒ ░▒░           ░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░ ░ ░ ▒  ░ ▒   ▒▒ ░" << "\n";
-        std::cout << "░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░  ░ ░ ░           ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░   ░ ░    ░   ▒   " << "\n";
-        std::cout << "  ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░" << "\n";
-        std::cout << "░                           ░                                ░                           ░                                " << "\n";
-        std::cout << "\n"; // 122 whitespace jakby co
-        std::cout << "                             wpisz odpowiednia komende zeby wybrac, zatwierdz klawiszem enter                             " << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|  ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄        |" << "\n";
+        std::cout << "|  ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄      |" << "\n";
+        std::cout << "|  ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░   ░██           ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░▒██░   ▒██  ▀█▄    |" << "\n";
+        std::cout << "|    ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▓██▄██▓            ▄▀▒   ░░▓█  ██▓░██▄▄▄▄██ ░▓█▄   ▌▓▓█  ░██░▒██░   ░██▄▄▄▄██   |" << "\n";
+        std::cout << "|  ▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓  ▓███▒           ▒███████▒░▒▓███▀▒ ▓█   ▓██▒░▒████▓ ▒▒█████▓ ░██████▒▓█   ▓██▒  |" << "\n";
+        std::cout << "|  ░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒  ▒▓▒▒░           ░▒▒ ▓░▒░▒ ░▒   ▒  ▒▒   ▓▒█░ ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░▓  ░▒▒   ▓▒█░  |" << "\n";
+        std::cout << "|  ░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░  ▒ ░▒░           ░░▒ ▒ ░ ▒  ░   ░   ▒   ▒▒ ░ ░ ▒  ▒ ░░▒░ ░ ░ ░ ░ ▒  ░ ▒   ▒▒ ░  |" << "\n";
+        std::cout << "|  ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░  ░ ░ ░           ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░   ░ ░    ░   ▒     |" << "\n";
+        std::cout << "|    ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░  |" << "\n";
+        std::cout << "|  ░                           ░                                ░                           ░                                  |" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|                               wpisz odpowiednia komende zeby wybrac, zatwierdz klawiszem enter                               |" << "\n";
         
         //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
         if(tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
-            std::cout << "                                   start - ROZPOCZNIJ GRĘ   tabela - TABELA WYNIKOW                                   " << "\n"; 
+            std::cout << "|                                       start - ROZPOCZNIJ GRĘ   tabela - TABELA WYNIKOW                                       |" << "\n"; 
         }else{
-            std::cout << "                                               start - ROZPOCZNIJ GRĘ                                                 " << "\n";
+            std::cout << "|                                                   start - ROZPOCZNIJ GRĘ                                                     |" << "\n";
         }
+
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+
         
         //input wybor trybu
         std::cin >> wybortryb;
@@ -280,22 +285,29 @@ int main(){
 
                 czysci();
 
-                std::cout << "                                ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                  " << "\n";
-                std::cout << "                                ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                  " << "\n";
-                std::cout << "                                ▒ ▓██░ ▒░▒██░  ██▒▓██░ ██▓▒   ▒████ ░▒██▒ ▓██  █▒░▒███                                    " << "\n";
-                std::cout << "                                ░ ▓██▓ ░ ▒██   ██░▒██▄█▓▒ ▒   ░▓█▒  ░░██░  ▒██ █░░▒▓█  ▄                                  " << "\n";
-                std::cout << "                                  ▒██▒ ░ ░ ████▓▒░▒██▒ ░  ░   ░▒█░   ░██░   ▒▀█░  ░▒████▒                                 " << "\n";
-                std::cout << "                                  ▒ ░░   ░ ▒░▒░▒░ ▒▓▒░ ░  ░    ▒ ░   ░▓     ░ ▐░  ░░ ▒░ ░                                 " << "\n";
-                std::cout << "                                    ░      ░ ▒ ▒░ ░▒ ░         ░      ▒ ░   ░ ░░   ░ ░  ░                                 " << "\n";
-                std::cout << "                                  ░      ░ ░ ░ ▒  ░░           ░ ░    ▒ ░     ░░     ░                                    " << "\n";
-                std::cout << "                                             ░ ░                      ░        ░     ░  ░                                 " << "\n";
-                std::cout << "                                                                      ░                                                   " << "\n";
-                std::cout << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                std::cout << "|                                                                                                                              |" << "\n";
+                std::cout << "|                                  ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                    |" << "\n";
+                std::cout << "|                                  ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                    |" << "\n";
+                std::cout << "|                                  ▒ ▓██░ ▒░▒██░  ██▒▓██░ ██▓▒   ▒████ ░▒██▒ ▓██  █▒░▒███                                      |" << "\n";
+                std::cout << "|                                  ░ ▓██▓ ░ ▒██   ██░▒██▄█▓▒ ▒   ░▓█▒  ░░██░  ▒██ █░░▒▓█  ▄                                    |" << "\n";
+                std::cout << "|                                    ▒██▒ ░ ░ ████▓▒░▒██▒ ░  ░   ░▒█░   ░██░   ▒▀█░  ░▒████▒                                   |" << "\n";
+                std::cout << "|                                    ▒ ░░   ░ ▒░▒░▒░ ▒▓▒░ ░  ░    ▒ ░   ░▓     ░ ▐░  ░░ ▒░ ░                                   |" << "\n";
+                std::cout << "|                                      ░      ░ ▒ ▒░ ░▒ ░         ░      ▒ ░   ░ ░░   ░ ░  ░                                   |" << "\n";
+                std::cout << "|                                    ░      ░ ░ ░ ▒  ░░           ░ ░    ▒ ░     ░░     ░                                      |" << "\n";
+                std::cout << "|                                               ░ ░                      ░        ░     ░  ░                                   |" << "\n";
+                std::cout << "|                                                                        ░                                                     |" << "\n";
+                std::cout << "|                                                                                                                              |" << "\n";
+                //std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                //std::cout << "|                                                                                                                              |" << "\n";
 
                 //info o poziomie
-                std::cout << "                                          aktualnie wyswietlam tabele dla: " << tabokno << "                                         ";
+                std::cout << "|                                            aktualnie wyswietlam tabele dla: " << tabokno << "                                           ";
                 if (tabokno == "latwy") std::cout << " "; //piszemy takie rzeczy zeby szata graficzna sie zgadzala
-                std::cout << "\n";
+                std::cout << "|\n"; // zakonczenie tego wiersza
+
+                std::cout << "|                                                                                                                              |" << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
                 
                 std::cout << "\n"; // estetyka
 
@@ -317,9 +329,9 @@ int main(){
                 for(int i = 0; i < indx.size() && top < 5 ; i++){
                     int j = indx[i]; // to jest posortowany indeks, to od niego bedziemy dawali wlasciwym wyswietleniom.
                     if(tabtrud[j] == tabokno){
-                        std::cout << "                                                    "; //55 whitespacow
+                        std::cout << "                                                    "; //52 whitespacoy
                         std::cout << top + 1 << ".\n";
-                        std::cout << "                                                      ";
+                        std::cout << "                                                      "; //54 whitespacy
                         std::cout << "gracz: " << tabgracz[j] << "\n";
                         std::cout << "                                                      ";
                         std::cout << "ilość prob: " << tabproby[j] << "\n";
@@ -339,12 +351,15 @@ int main(){
                 
                 std::cout << "\n"; // estetyka
                 
-                std::cout << "                               wybierz poziom trudnosci dla jakiego chcesz zobaczyc tabele:                               " << "\n";
-                std::cout << "                                                  latwy | sredni | trudny                                                 " << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                std::cout << "|                                                                                                                              |" << "\n";
+                std::cout << "|                                 wybierz poziom trudnosci dla jakiego chcesz zobaczyc tabele:                                 |" << "\n";
+                std::cout << "|                                                    latwy | sredni | trudny                                                   |" << "\n";
+                std::cout << "|                                                                                                                              |" << "\n";
+                
 
-                std::cout << "\n"; //estetyka
-
-                std::cout << "                                             wyjdz - POWROT DO MENU GLOWNEGO                                              " << "\n";
+                std::cout << "|                                               wyjdz - POWROT DO MENU GLOWNEGO                                                |" << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
                 
                 //sluchanie wyjscia, jezeli wpisane bedzie exit to wrocimy do menu, inaczej powinno wyswietlic dobra tabele
                 std::cin >> tabokno;
