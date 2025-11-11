@@ -20,72 +20,129 @@ std::string losowawiadomosc(int los,int &proba){
 
     std::string strproba = std::to_string(proba);
     
-    switch (los){
+    switch (los){ //ify istnieja po to, zeby rameczka sie zgadzala tylko i wylacznie xd(troche zaczynam siebie nienawidzic za te ramki)
         //za malo
         case 0:
-        wiad = "pudło! podana liczba jest za mała...";
+        wiad = "|                                             pudło! podana liczba jest za mała...                                             |";
         break;
         case 1:
-        wiad = "pff, do celu jeszcze ci sporo brakuje! wszystko jeszcze przed tobą.";
+        wiad = "|                              pff, do celu jeszcze ci sporo brakuje! wszystko jeszcze przed tobą.                             |";
         break;
         case 2:
-        wiad = strproba + "? pierwsze slysze. musisz troche urosnac maluchu!";
+        if(proba > 99){
+            wiad ="|                                     " + strproba + "? pierwsze slysze. musisz troche urosnac maluchu!                                     |";
+        }else if(proba > 9){
+            wiad ="|                                      " + strproba + "? pierwsze slysze. musisz troche urosnac maluchu!                                     |";
+        }else{
+            wiad ="|                                       " + strproba + "? pierwsze slysze. musisz troche urosnac maluchu!                                     |";
+        }
         break;
         case 3:
-        wiad = "zeby wyruszyc w droge nalezy zebrac druzyne. twoja jest za mala.";
+        wiad = "|                               zeby wyruszyc w droge nalezy zebrac druzyne. twoja jest za mala.                               |";
         break;
         case 4:
-        wiad = "musisz dodac do " + strproba + " zeby dostac to, czego szukasz.";
+        if(proba > 99){
+            wiad = "|                                      musisz dodac do " + strproba + " zeby dostac to, czego szukasz.                                      |";
+        }else if(proba > 9){
+            wiad = "|                                      musisz dodac do " + strproba + " zeby dostac to, czego szukasz.                                       |";
+        }else{
+            wiad = "|                                       musisz dodac do " + strproba + " zeby dostac to, czego szukasz.                                       |";
+        }
         break;
         case 5:
-        wiad = "szukana liczba jest wieksza od " + strproba;
+        if(proba > 99){
+            wiad = "|                                              szukana liczba jest wieksza od " + strproba + "                                              |";
+        }else if(proba > 9){
+            wiad = "|                                               szukana liczba jest wieksza od " + strproba + "                                              |";
+        }else{
+            wiad = "|                                               szukana liczba jest wieksza od " + strproba + "                                               |";
+        }
         break;
         case 6:
-        wiad = strproba + " jest mniejsze od celu.";
+        
+        if(proba > 99){
+            wiad = "|                                                  " + strproba + " jest mniejsze od celu.                                                  |";
+        }else if(proba > 9){
+            wiad = "|                                                   " + strproba + " jest mniejsze od celu.                                                  |";
+        }else{
+            wiad = "|                                                   " + strproba + " jest mniejsze od celu.                                                   |";
+        }
         break;
         case 7:
-        wiad = "za małoooooooo";
+        wiad = "|                                                        za małoooooooo                                                        |";
         break;
         case 8:
-        wiad = "cel tuz przed toba! nie poddawaj sie!";
+        wiad = "|                                             cel tuz przed toba! nie poddawaj sie!                                            |";
         break;
         case 9:
-        wiad = "nigdy nie zgadniesz. ale podpowiem, ze celujesz za nisko.";
+        wiad = "|                                   nigdy nie zgadniesz. ale podpowiem, ze celujesz za nisko.                                  |";
         break;
 
         //za duzo
         case 10:
-        wiad = "pudło! podana liczba jest za duza...";
+        wiad = "|                                             pudło! podana liczba jest za duza...                                             |";
         break;
         case 11:
-        wiad = "zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac";
+        if(proba > 99){
+            wiad = "|                             zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac                              |";
+        }else if(proba > 9){
+            wiad = "|                              zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac                              |";
+        }else{
+            wiad = "|                              zagalopowales sie! " + strproba + "? zeby dojsc do celu musisz sie niezle cofnac                               |";
+        }
         break;
         case 12:
-        wiad = strproba + "? przerosles swoj cel! nie wiem jak, ale musisz sie skurczyc!";
+        if(proba > 99){
+            wiad = "|                               " + strproba + "? przerosles swoj cel! nie wiem jak, ale musisz sie skurczyc!                               |";
+        }else if(proba > 9){
+            wiad = "|                               " + strproba + "? przerosles swoj cel! nie wiem jak, ale musisz sie skurczyc!                                |";
+        }else{
+            wiad = "|                                " + strproba + "? przerosles swoj cel! nie wiem jak, ale musisz sie skurczyc!                                |";
+        }
         break;
         case 13:
-        wiad = "chcialbym dolaczyc do druzyny, ale twoja jest juz pelna i i tak za duza.";
+        wiad = "|                           chcialbym dolaczyc do druzyny, ale twoja jest juz pelna i i tak za duza.                           |";
         break;
         case 14:
-        wiad = "musisz odjac od " + strproba + " zeby dostac to, czego szukasz.";
+        if(proba > 99){
+            wiad = "|                                      musisz odjac od " + strproba + " zeby dostac to, czego szukasz.                                      |";
+        }else if(proba > 9){
+            wiad = "|                                      musisz odjac od " + strproba + " zeby dostac to, czego szukasz.                                       |";
+
+        }else{
+            wiad = "|                                       musisz odjac od " + strproba + " zeby dostac to, czego szukasz.                                       |";
+        }
         break;
         case 15:
         wiad = strproba + " jest wieksze od celu.";
+        if(proba > 99){
+            wiad = "|                                                  " + strproba + " jest wieksze od celu.                                                   |";
+        }else if(proba > 9){
+            wiad = "|                                                  " + strproba + " jest wieksze od celu.                                                    |";
+        }else{
+            wiad = "|                                                  " + strproba + " jest wieksze od celu.                                                    |";
+        }
         break;
         case 16:
-        wiad = "szukana liczba jest mniejsza od " + strproba;
+        if(proba > 99){
+            wiad = "|                                             szukana liczba jest mniejsza od " + strproba + "                                              |";
+        }else if(proba > 9){
+            wiad = "|                                              szukana liczba jest mniejsza od " + strproba + "                                              |";
+        }else{
+            wiad = "|                                              szukana liczba jest mniejsza od " + strproba + "                                               |";
+        }
         break;
         case 17:
-        wiad = "za duzooooooooo";
+        wiad = "|                                                       za duzoooooooooo                                                       |";
         break;
         case 18:
-        wiad = "cel tuz za toba! nie poddawaj sie!";
+        wiad = "|                                              cel tuz za toba! nie poddawaj sie!                                              |";
         break;
         case 19:
-        wiad = "nigdy nie zgadniesz. ale podpowiem, ze celujesz za wysoko.";
+        wiad = "|                                  nigdy nie zgadniesz. ale podpowiem, ze celujesz za wysoko.                                  |";
         break;
         default:
-        wiad = "błędna liczba!";
+        wiad = "|                                                        błędna liczba!                                                        |";
         break;
     }
 
@@ -96,28 +153,46 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
     std::string trudnosc;
     std::string potwierdztrudnosc = "n";
 
-    while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "y" && potwierdztrudnosc != "Y" ){
+    while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "tak" && potwierdztrudnosc != "TAK" ){
         czysci();
-        
-        std::cout << "                                                  wpisz poziom trudności:                                                 " << "\n";
-        std::cout << "                                                  latwy | sredni | trudny                                                 " << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|                                                    wpisz poziom trudności:                                                   |" << "\n";
+        std::cout << "|                                                    latwy | sredni | trudny                                                   |" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
 
         std::cin >> trudnosc;
         
         //sprawdza czy trudnosci sa w odpowiednim zakresie, wymusza wpisanie odpowiedniego stringa
         while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
             czysci(); 
-            std::cout << "                                              wybrano błędny poziom trudności                                             " << "\n";                
-            std::cout << "                                            podaj poziom trudności jeszcze raz                                            " << "\n";
+
+            std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+            std::cout << "!                                                                                                                              !" << "\n";
+            std::cout << "!                                              ! wybrano błędny poziom trudności !                                             !" << "\n";
+            std::cout << "!                                                                                                                              !" << "\n";                
+            std::cout << "!                                            ! podaj poziom trudności jeszcze raz !                                            !" << "\n";
+            std::cout << "!                                                                                                                              !" << "\n";
+            std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+
             std::cin >> trudnosc;
         }
         
         //potwierdzenie wyboru
         czysci();
-        std::cout << "                                             wybrałeś " << trudnosc << " poziom trudności                                             ";
+
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|                                               wybrałeś " << trudnosc << " poziom trudności                                               ";
+
         if(trudnosc == "latwy") std::cout << " "; //zrobione zeby szata graficzna sie zgadzala
-        std::cout  << "\n\n";
-        std::cout << "                                                      zgadza się? t/n                                                     " << "\n";
+        std::cout  << "|\n";
+
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|                                                        zgadza się? t/n                                                       |" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
         std::cin >> potwierdztrudnosc;
 
     }
@@ -127,12 +202,10 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
 // glowna funkcja gry zgadywania
 void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
     
-    //zbiorowisko zmiennych
     int cel; //cel w ktory bedziemy strzelac
     int proba = 0; // tutaj beda podstawiane proby zgadywania.
 
-    //poczatek kodu
-    czysci();
+    //czysci();
 
     ilprob = 0; // ustawia na start ilosc prob na 0
 
@@ -158,19 +231,49 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
     // rozpoczecie zgadywania
     while(proba != cel){
         czysci();// clearowanie terminala
+        
+        //stary dziad zawsze na gorze ekranu
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "|                                                              ▄█▀█▄                                                           |" << "\n";
+        std::cout << "|                                                            ███▓▓▓█                                                           |" << "\n";
+        std::cout << "|                                                           █▓▒░░░▒▓█                                                          |" << "\n";
+        std::cout << "|                                                          █▒░     ░▒█                                                         |" << "\n";
+        std::cout << "|                                                         █░       ░░█                                                         |" << "\n";
+        std::cout << "|                                                        █░         ░░█                                                        |" << "\n";
+        std::cout << "|                                                       █░           ░░█                                                       |" << "\n";
+        std::cout << "|                                                      █░             ░░█                                                      |" << "\n";
+        std::cout << "|                                                     █░               ░░█                                                     |" << "\n";
+        std::cout << "|                                              ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                                             |" << "\n";
+        std::cout << "|                                                    ███░ █░  o   o  ░█ ░███                                                   |" << "\n";
+        std::cout << "|                                                    ▓██░ █░ ▄▄███▄▄ ░█ ░██▓                                                   |" << "\n";
+        std::cout << "|                                                    ▒██░ █░    U    ░█ ░██▒                                                   |" << "\n";
+        std::cout << "|                                                     ▓██▄▄▄█████████▄▄▄██▓                                                    |" << "\n";
+        std::cout << "|                                                      ██▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓██                                                     |" << "\n";
+        std::cout << "|                                                       █▓▒░░░░░░░░░░░▒▓█                                                      |" << "\n";
+        std::cout << "|                                                        █▒░░░░░░░░░░░▒█                                                       |" << "\n";
+        std::cout << "|                                                          ██▒░░░░░░▒██                                                        |" << "\n";
+        std::cout << "|                                                          ▒██▒░░░▒██▒                                                         |" << "\n";
+        std::cout << "|                                                           ▒███▒███▒                                                          |" << "\n";
+        std::cout << "|                                                        ▄▄█████▓█████▄▄                                                       |" << "\n";
+        std::cout << "|                                                    ▄███▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓███▄                                                   |" << "\n";
+        std::cout << "|                                                   ██▓▒░░░░░░░░░░░░░░░░░▒▓██                                                  |" << "\n";
+        std::cout << "|                                                  ▓█▒░░░░░░░░░░░░░░░░░░░░░▒█▓                                                 |" << "\n";
+        std::cout << "|                                                 █▒░░░░░░░░░░░░░░░░░░░░░░░░░▒█                                                |" << "\n";
 
-        // podaje ilosc prob
-        std::cout << "ilość prób: " << ilprob << "\n\n";
 
-        //prosi o zgadniecie liczby w odpowiednim przedziale
-        std::cout << "zgadnij liczbę w przedziale ";
-        if(poztrud == "latwy"){
-            std::cout << "1-50 \n";
-        }else if (poztrud == "sredni"){
-            std::cout << "1-100\n";
-        }else if (poztrud == "trudny"){
-            std::cout << "1-250\n";
-        }
+        //ramka wypowiedzi dziada
+        std::cout << "+--------------------------------------------------------------------------------------------------------------------------+---+" << "\n";
+
+        // info o ilosci prob
+        std::cout << "|                                                                                                               ";
+        std::cout << "ilość prób:|";
+        //ify sprawiajace ze ramka sie nie psuje nie wazne ile prob sie ma
+        if(ilprob < 100)std::cout << " ";
+        if(ilprob < 10)std::cout << " ";
+        std::cout << ilprob << "|\n"; //dokonczenie rameczki
+
+        std::cout << "|                                                                                                                          +---+" << "\n";
 
         // informuje czy cel jest wiekszy czy mniejszy od proby
         int loswiad; // losowa wiadomosc
@@ -181,7 +284,30 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
                 loswiad = rand() % 10 + 10;
             }
             std::cout << losowawiadomosc(loswiad, proba) << "\n";
+        }else{ // wita sie z graczem przy uruchomieniu
+            std::cout << "|                      Witaj w Zgaduj Zgadula! Jestem Zgadula i będę ci pomagał w zgadywaniu. Powodzenia!                      |" << "\n";
         }
+
+        std::cout << "|                                                                                                                              |" << "\n";
+
+        //prosi o zgadniecie liczby w odpowiednim przedziale
+        std::cout << "|                                              ";
+        std::cout << "zgadnij liczbę w przedziale ";
+        if(poztrud == "latwy"){
+            std::cout << "1-50 ";
+        }else if (poztrud == "sredni"){
+            std::cout << "1-100";
+        }else if (poztrud == "trudny"){
+            std::cout << "1-250";
+        }
+        std::cout << "                                               |\n";
+
+
+        
+        // ramka koncowa
+        std::cout << "|                                                                                                                              |" << "\n";
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+
 
         std::cin >> proba; // pierwsza proba
 
@@ -189,20 +315,36 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         //sprawdzenie czy proba jest w przedziale poziomu trudnosci
         if(poztrud == "latwy"){
             while(proba < 1 || proba > 50){
-                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                !\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
                 std::cin >> proba;
             }
         }else if (poztrud == "sredni"){
             while(proba < 1 || proba > 100){
-                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                std::cout << "!                                                                                                                              |" << "\n";
+                std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                |\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
                 std::cin >> proba;
             }
         }else if (poztrud == "trudny"){
             while(proba < 1 || proba > 250){
-                std::cout << "\nwpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                !\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
                 std::cin >> proba;
             }
         }
+
+        //zamkniecie ramki ogolnej
+        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+
 
         //dodanie 1 do ilosci prob na koniec petli
         ilprob++;
@@ -298,9 +440,7 @@ int main(){
                 std::cout << "|                                               ░ ░                      ░        ░     ░  ░                                   |" << "\n";
                 std::cout << "|                                                                        ░                                                     |" << "\n";
                 std::cout << "|                                                                                                                              |" << "\n";
-                //std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-                //std::cout << "|                                                                                                                              |" << "\n";
-
+                
                 //info o poziomie
                 std::cout << "|                                            aktualnie wyswietlam tabele dla: " << tabokno << "                                           ";
                 if (tabokno == "latwy") std::cout << " "; //piszemy takie rzeczy zeby szata graficzna sie zgadzala
