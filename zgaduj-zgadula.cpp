@@ -441,6 +441,10 @@ int main(){
                 std::cout << "|                                                                        ░                                                     |" << "\n";
                 std::cout << "|                                                                                                                              |" << "\n";
                 
+
+                if(tabokno != "latwy" && tabokno != "sredni" && tabokno != "trudny" && tabokno != "wyjdz"){ // dzieki temu nie mozna wpisywac innych tabeli niz te ktore istnieja
+                    tabokno = "latwy"; // domyslnie ustawia na latwy
+                }
                 //info o poziomie
                 std::cout << "|                                            aktualnie wyswietlam tabele dla: " << tabokno << "                                           ";
                 if (tabokno == "latwy") std::cout << " "; //piszemy takie rzeczy zeby szata graficzna sie zgadzala
