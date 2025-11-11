@@ -15,6 +15,15 @@ void czysci(){ // funkcja czyszczaca ekran ( portable! )
     }
 }
 
+void belka(){// funkcja tworzaca gorna belke ramki (stworzone zeby sie nie powtarzac)
+    std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+}
+
+void scianka(){// funkcja tworzaca boczne scianki ramki (stworzone zeby sie nie powtarzac)
+    std::cout << "|                                                                                                                              |" << "\n";
+
+}
+
 std::string losowawiadomosc(int los,int &proba){
     std::string wiad;
 
@@ -155,12 +164,13 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
 
     while(potwierdztrudnosc != "t" && potwierdztrudnosc != "T" && potwierdztrudnosc != "tak" && potwierdztrudnosc != "TAK" ){
         czysci();
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
+
+        belka();
+        scianka();
         std::cout << "|                                                    wpisz poziom trudności:                                                   |" << "\n";
         std::cout << "|                                                    latwy | sredni | trudny                                                   |" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        scianka();
+        belka();
 
         std::cin >> trudnosc;
         
@@ -168,13 +178,13 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
         while(trudnosc != "latwy" &&  trudnosc != "sredni" && trudnosc != "trudny"){   
             czysci(); 
 
-            std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+            belka();
             std::cout << "!                                                                                                                              !" << "\n";
             std::cout << "!                                              ! wybrano błędny poziom trudności !                                             !" << "\n";
             std::cout << "!                                                                                                                              !" << "\n";                
             std::cout << "!                                            ! podaj poziom trudności jeszcze raz !                                            !" << "\n";
             std::cout << "!                                                                                                                              !" << "\n";
-            std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+            belka();
 
             std::cin >> trudnosc;
         }
@@ -182,17 +192,18 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
         //potwierdzenie wyboru
         czysci();
 
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
+        belka();
+        scianka();
         std::cout << "|                                               wybrałeś " << trudnosc << " poziom trudności                                               ";
 
         if(trudnosc == "latwy") std::cout << " "; //zrobione zeby szata graficzna sie zgadzala
         std::cout  << "|\n";
 
-        std::cout << "|                                                                                                                              |" << "\n";
+        scianka();
         std::cout << "|                                                        zgadza się? t/n                                                       |" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        scianka();
+        belka();
+
         std::cin >> potwierdztrudnosc;
 
     }
@@ -233,8 +244,8 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         czysci();// clearowanie terminala
         
         //stary dziad zawsze na gorze ekranu
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
+        belka();
+        scianka();
         std::cout << "|                                                              ▄█▀█▄                                                           |" << "\n";
         std::cout << "|                                                            ███▓▓▓█                                                           |" << "\n";
         std::cout << "|                                                           █▓▒░░░▒▓█                                                          |" << "\n";
@@ -288,7 +299,7 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
             std::cout << "|                      Witaj w Zgaduj Zgadula! Jestem Zgadula i będę ci pomagał w zgadywaniu. Powodzenia!                      |" << "\n";
         }
 
-        std::cout << "|                                                                                                                              |" << "\n";
+        scianka();
 
         //prosi o zgadniecie liczby w odpowiednim przedziale
         std::cout << "|                                              ";
@@ -305,8 +316,8 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
 
         
         // ramka koncowa
-        std::cout << "|                                                                                                                              |" << "\n";
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        scianka();
+        belka();
 
 
         std::cin >> proba; // pierwsza proba
@@ -315,46 +326,63 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         //sprawdzenie czy proba jest w przedziale poziomu trudnosci
         if(poztrud == "latwy"){
             while(proba < 1 || proba > 50){
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 std::cout << "!                                                                                                                              !" << "\n";
                 std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                !\n";
                 std::cout << "!                                                                                                                              !" << "\n";
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
+
                 std::cin >> proba;
             }
         }else if (poztrud == "sredni"){
             while(proba < 1 || proba > 100){
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 std::cout << "!                                                                                                                              |" << "\n";
                 std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                |\n";
                 std::cout << "!                                                                                                                              !" << "\n";
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 std::cin >> proba;
             }
         }else if (poztrud == "trudny"){
             while(proba < 1 || proba > 250){
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 std::cout << "!                                                                                                                              !" << "\n";
                 std::cout << "!                                ! wpisałeś liczbę poza przedziałem, podaj liczbę jeszcze raz !                                !\n";
                 std::cout << "!                                                                                                                              !" << "\n";
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 std::cin >> proba;
             }
         }
 
         //zamkniecie ramki ogolnej
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+        belka();
 
 
         //dodanie 1 do ilosci prob na koniec petli
         ilprob++;
     }
 
+    //pytanie o nazwe gracza do wynikow
     czysci();
 
-    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel << " w " << ilprob << " probach!\n";
-    std::cout << "podaj swoje imię, aby dodać je do tablicy najlepszych wynikow\n";
+    belka();
+    scianka();
+    std::cout << "|                                    ";
+    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel;
+    if(cel < 100)std::cout << " "; // musza byc zeby rameczka sie zgadzala
+    if(cel < 10)std::cout << " ";
+    std::cout << " w " << ilprob;
+    if(ilprob < 100)std::cout << " "; //tu to co wyzej
+    if(ilprob < 10)std::cout << " ";
+    std::cout << " probach!                                    |\n";
+
+    scianka();
+
+    std::cout << "|                                podaj swoje imię, aby dodać je do tablicy najlepszych wynikow.                                |\n";
+    scianka();
+    belka();
     std::cin >> imie;
+
 
 }
 
@@ -371,9 +399,8 @@ int main(){
     while (1){
         czysci();
 
-        
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
+        belka();        
+        scianka();
         std::cout << "|  ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ▄▄▄██▀▀▀        ▒███████▒  ▄████  ▄▄▄      ▓█████▄  █    ██  ██▓    ▄▄▄        |" << "\n";
         std::cout << "|  ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒   ▒██           ▒ ▒ ▒ ▄▀░ ██▒ ▀█▒▒████▄    ▒██▀ ██▌ ██  ▓██▒▓██▒   ▒████▄      |" << "\n";
         std::cout << "|  ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░   ░██           ░ ▒ ▄▀▒░ ▒██░▄▄▄░▒██  ▀█▄  ░██   █▌▓██  ▒██░▒██░   ▒██  ▀█▄    |" << "\n";
@@ -384,7 +411,7 @@ int main(){
         std::cout << "|  ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░  ░ ░ ░           ░ ░ ░ ░ ░░ ░   ░   ░   ▒    ░ ░  ░  ░░░ ░ ░   ░ ░    ░   ▒     |" << "\n";
         std::cout << "|    ░ ░          ░       ░  ░   ░       ░      ░   ░             ░ ░          ░       ░  ░   ░       ░         ░  ░     ░  ░  |" << "\n";
         std::cout << "|  ░                           ░                                ░                           ░                                  |" << "\n";
-        std::cout << "|                                                                                                                              |" << "\n";
+        scianka();
         std::cout << "|                               wpisz odpowiednia komende zeby wybrac, zatwierdz klawiszem enter                               |" << "\n";
         
         //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
@@ -394,9 +421,8 @@ int main(){
             std::cout << "|                                                   start - ROZPOCZNIJ GRĘ                                                     |" << "\n";
         }
 
-        std::cout << "|                                                                                                                              |" << "\n";
-        std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-
+        scianka();
+        belka();
         
         //input wybor trybu
         std::cin >> wybortryb;
@@ -427,8 +453,8 @@ int main(){
 
                 czysci();
 
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-                std::cout << "|                                                                                                                              |" << "\n";
+                belka();
+                scianka();
                 std::cout << "|                                  ▄▄▄█████▓ ▒█████   ██▓███       █████▒██▓ ██▒   █▓▓█████                                    |" << "\n";
                 std::cout << "|                                  ▓  ██▒ ▓▒▒██▒  ██▒▓██░  ██▒   ▓██   ▒▓██▒▓██░   █▒▓█   ▀                                    |" << "\n";
                 std::cout << "|                                  ▒ ▓██░ ▒░▒██░  ██▒▓██░ ██▓▒   ▒████ ░▒██▒ ▓██  █▒░▒███                                      |" << "\n";
@@ -439,7 +465,7 @@ int main(){
                 std::cout << "|                                    ░      ░ ░ ░ ▒  ░░           ░ ░    ▒ ░     ░░     ░                                      |" << "\n";
                 std::cout << "|                                               ░ ░                      ░        ░     ░  ░                                   |" << "\n";
                 std::cout << "|                                                                        ░                                                     |" << "\n";
-                std::cout << "|                                                                                                                              |" << "\n";
+                scianka();
                 
 
                 if(tabokno != "latwy" && tabokno != "sredni" && tabokno != "trudny" && tabokno != "wyjdz"){ // dzieki temu nie mozna wpisywac innych tabeli niz te ktore istnieja
@@ -450,8 +476,8 @@ int main(){
                 if (tabokno == "latwy") std::cout << " "; //piszemy takie rzeczy zeby szata graficzna sie zgadzala
                 std::cout << "|\n"; // zakonczenie tego wiersza
 
-                std::cout << "|                                                                                                                              |" << "\n";
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                scianka();
+                belka();
                 
                 std::cout << "\n"; // estetyka
 
@@ -495,15 +521,15 @@ int main(){
                 
                 std::cout << "\n"; // estetyka
                 
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
-                std::cout << "|                                                                                                                              |" << "\n";
+                belka();
+                scianka();
                 std::cout << "|                                 wybierz poziom trudnosci dla jakiego chcesz zobaczyc tabele:                                 |" << "\n";
                 std::cout << "|                                                    latwy | sredni | trudny                                                   |" << "\n";
-                std::cout << "|                                                                                                                              |" << "\n";
+                scianka();
                 
 
                 std::cout << "|                                               wyjdz - POWROT DO MENU GLOWNEGO                                                |" << "\n";
-                std::cout << "+------------------------------------------------------------------------------------------------------------------------------+" << "\n";
+                belka();
                 
                 //sluchanie wyjscia, jezeli wpisane bedzie exit to wrocimy do menu, inaczej powinno wyswietlic dobra tabele
                 std::cin >> tabokno;
