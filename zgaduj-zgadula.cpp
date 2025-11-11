@@ -416,11 +416,10 @@ int main(){
         
         //pokazuje opcje tabela wynikow dopiero jesli vector nie jest pusty
         if(tabgracz.size() > 0 && tabproby.size() > 0 && tabtrud.size() > 0){
-            std::cout << "|                                       start - ROZPOCZNIJ GRĘ   tabela - TABELA WYNIKOW                                       |" << "\n"; 
+            std::cout << "|                            start - ROZPOCZNIJ GRĘ   tabela - TABELA WYNIKOW   wyjdz - WYJDZ Z GRY                            |" << "\n"; 
         }else{
-            std::cout << "|                                                   start - ROZPOCZNIJ GRĘ                                                     |" << "\n";
+            std::cout << "|                                        start - ROZPOCZNIJ GRĘ   wyjdz - WYJDZ Z GRY                                          |" << "\n";
         }
-
         scianka();
         belka();
         
@@ -536,6 +535,11 @@ int main(){
 
             }
 
+        }
+
+        //wyjscie z gry
+        if(wybortryb == "wyjdz"){
+            return 0;
         }
     } 
     
