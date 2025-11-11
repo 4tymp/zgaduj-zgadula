@@ -211,7 +211,7 @@ std::string poziomtrudnosci(){ //funkcja difficulty picker
 }
 
 // glowna funkcja gry zgadywania
-void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
+void glownagra(std::string &imie, int &ilprob, std::string &poztrud,bool &przegrana){// referencje, dzieki nim w mainie beda dostepne zmienne z tej funkcji!
     
     int cel; //cel w ktory bedziemy strzelac
     int proba = 0; // tutaj beda podstawiane proby zgadywania.
@@ -239,9 +239,80 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
 
     }
 
+    //tryb zakladu
+    int zaklad; //liczba zakladana
+    std::string pytzak; // pytanie o zaklad
+    std::string potwzak;// potwierdzenie zakladu
+    przegrana = false; // potrzebne zeby sprawdzac czy bylo cos przegrane
+
+    while(potwzak != "t" && potwzak != "T" && potwzak != "tak" && potwzak != "TAK"){
+        czysci();
+
+        belka();
+        scianka();
+        std::cout << "|                                           czy chcialbys wlaczyc tryb zakladu? t/n                                            |\n";
+        scianka();
+        belka();
+
+        std::cin >> pytzak;
+
+        if(pytzak == "t" || pytzak == "T" || pytzak == "tak" || pytzak == "TAK"){
+            czysci();
+
+            belka();
+            scianka();
+            std::cout << "|                                         podaj w ilu probach myslisz ze sie zmiescisz                                         |\n";
+            scianka();
+            belka();
+
+            std::cin >> zaklad;
+
+            while(zaklad < 1){
+                belka();
+                std::cout << "!                                                                                                                              !" << "\n";
+                std::cout << "!                                          ! nie da sie zgadnac w mniej niz 1 probe !                                          !\n";
+                std::cout << "!                                                                                                                              !" << "\n";
+                belka();
+
+                std::cin >> zaklad;
+            }
+
+    
+            //potwierdzenie
+            czysci();
+
+            belka();
+            scianka();
+            std::cout << "|                                              jestes pewny swojego zakladu? t/n                                               |\n";
+            scianka();
+            belka();
+
+            std::cin >> potwzak;
+
+        }else{//potwierdzenie braku zakladu
+            czysci();
+
+            belka();
+            scianka();
+            std::cout << "|                                        jestes pewny, ze nie chcesz sie zakladac? t/n                                         |\n";
+            scianka();
+            belka();
+
+            std::cin >> potwzak;
+        }
+
+    }
+
     // rozpoczecie zgadywania
     while(proba != cel){
         czysci();// clearowanie terminala
+
+        if(ilprob >= zaklad && (pytzak == "t" || pytzak == "T" || pytzak == "tak" || pytzak == "TAK")){
+
+            przegrana = true; // ustawia przegrana na true, potrzebne zeby po petli nie pytac po imie gracza
+
+            break; // konczy petle tu i teraz
+        }
         
         //stary dziad zawsze na gorze ekranu
         belka();
@@ -274,7 +345,13 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
 
 
         //ramka wypowiedzi dziada
-        std::cout << "+--------------------------------------------------------------------------------------------------------------------------+---+" << "\n";
+        std::cout << "+--------------------------------------------------------------------------------------------------------------------------+---+";
+
+        if(pytzak == "t" || pytzak == "T" || pytzak == "tak" || pytzak == "TAK"){//wypisywanie ramki zakladu gdy jest wlaczony
+            std::cout << "-----------+";
+        }
+        
+        std::cout << "\n"; // zakonczenie linii
 
         // info o ilosci prob
         std::cout << "|                                                                                                               ";
@@ -282,9 +359,25 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         //ify sprawiajace ze ramka sie nie psuje nie wazne ile prob sie ma
         if(ilprob < 100)std::cout << " ";
         if(ilprob < 10)std::cout << " ";
-        std::cout << ilprob << "|\n"; //dokonczenie rameczki
+        std::cout << ilprob << "|";//dokonczenie rameczki
+        
+        if(pytzak == "t" || pytzak == "T" || pytzak == "tak" || pytzak == "TAK"){//wypisywanie zakladu gdy jest wlaczony
+            std::cout << "zaklad: ";
+            if(zaklad < 100)std::cout << " ";
+            if(zaklad < 10)std::cout << " ";
+            std::cout << zaklad << "|";
+        }
+        
+        std::cout << "\n"; //zakonczenie tej linii
+   
 
-        std::cout << "|                                                                                                                          +---+" << "\n";
+        std::cout << "|                                                                                                                          +---+";
+        
+        if(pytzak == "t" || pytzak == "T" || pytzak == "tak" || pytzak == "TAK"){//wypisywanie ramki zakladu gdy jest wlaczony
+            std::cout << "-----------+";
+        }
+        
+        std::cout << "\n"; // zakonczenie linii
 
         // informuje czy cel jest wiekszy czy mniejszy od proby
         int loswiad; // losowa wiadomosc
@@ -362,27 +455,65 @@ void glownagra(std::string &imie, int &ilprob, std::string &poztrud){// referenc
         ilprob++;
     }
 
-    //pytanie o nazwe gracza do wynikow
-    czysci();
+    //info o przegranym zakladzie zamiast pytania o imie
+    if(przegrana == true){
+        std::string przegmenu;
+        while(przegmenu != "menu"){
+            czysci();
 
-    belka();
-    scianka();
-    std::cout << "|                                    ";
-    std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel;
-    if(cel < 100)std::cout << " "; // musza byc zeby rameczka sie zgadzala
-    if(cel < 10)std::cout << " ";
-    std::cout << " w " << ilprob;
-    if(ilprob < 100)std::cout << " "; //tu to co wyzej
-    if(ilprob < 10)std::cout << " ";
-    std::cout << " probach!                                    |\n";
+            belka();
+            scianka();
+            std::cout << "|                       ██▓███   ██▀███  ▒███████▒▓█████   ▄████  ██▀███   ▄▄▄       ███▄    █  ▄▄▄                            |\n";
+            std::cout << "|                      ▓██░  ██▒▓██ ▒ ██▒▒ ▒ ▒ ▄▀░▓█   ▀  ██▒ ▀█▒▓██ ▒ ██▒▒████▄     ██ ▀█   █ ▒████▄                          |\n";
+            std::cout << "|                      ▓██░ ██▓▒▓██ ░▄█ ▒░ ▒ ▄▀▒░ ▒███   ▒██░▄▄▄░▓██ ░▄█ ▒▒██  ▀█▄  ▓██  ▀█ ██▒▒██  ▀█▄                        |\n";
+            std::cout << "|                      ▒██▄█▓▒ ▒▒██▀▀█▄    ▄▀▒   ░▒▓█  ▄ ░▓█  ██▓▒██▀▀█▄  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░██▄▄▄▄██                       |\n";
+            std::cout << "|                      ▒██▒ ░  ░░██▓ ▒██▒▒███████▒░▒████▒░▒▓███▀▒░██▓ ▒██▒ ▓█   ▓██▒▒██░   ▓██░ ▓█   ▓██▒                      |\n";
+            std::cout << "|                      ▒▓▒░ ░  ░░ ▒▓ ░▒▓░░▒▒ ▓░▒░▒░░ ▒░ ░ ░▒   ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒   ▓▒█░                      |\n";
+            std::cout << "|                      ░▒ ░       ░▒ ░ ▒░░░▒ ▒ ░ ▒ ░ ░  ░  ░   ░   ░▒ ░ ▒░  ▒   ▒▒ ░░ ░░   ░ ▒░  ▒   ▒▒ ░                      |\n";
+            std::cout << "|                      ░░         ░░   ░ ░ ░ ░ ░ ░   ░   ░ ░   ░   ░░   ░   ░   ▒      ░   ░ ░   ░   ▒                         |\n";
+            std::cout << "|                                  ░       ░ ░       ░  ░      ░    ░           ░  ░         ░       ░  ░                      |\n";
+            std::cout << "|                                          ░                                                                                   |\n";
+            scianka();
+            std::cout << "|                                     przegrales! wykonales wiecej prob niz podany zaklad!                                     |\n";
+            scianka();
+            std::cout << "|                                                    menu - powrot do menu                                                     |\n";
+            scianka();
+            belka();
 
-    scianka();
+            std::cin >> przegmenu;
+        }
+    }else{ //pytanie o nazwe gracza do wynikow (jezeli nie przegral)
+        czysci();
 
-    std::cout << "|                                podaj swoje imię, aby dodać je do tablicy najlepszych wynikow.                                |\n";
-    scianka();
-    belka();
-    std::cin >> imie;
+        belka();
+        scianka();
+        std::cout << "|                               █     █░▓██   ██▓  ▄████  ██▀███   ▄▄▄       ███▄    █  ▄▄▄                                    |\n";
+        std::cout << "|                              ▓█░ █ ░█░ ▒██  ██▒ ██▒ ▀█▒▓██ ▒ ██▒▒████▄     ██ ▀█   █ ▒████▄                                  |\n";
+        std::cout << "|                              ▒█░ █ ░█   ▒██ ██░▒██░▄▄▄░▓██ ░▄█ ▒▒██  ▀█▄  ▓██  ▀█ ██▒▒██  ▀█▄                                |\n";
+        std::cout << "|                              ░█░ █ ░█   ░ ▐██▓░░▓█  ██▓▒██▀▀█▄  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░██▄▄▄▄██                               |\n";
+        std::cout << "|                              ░░██▒██▓   ░ ██▒▓░░▒▓███▀▒░██▓ ▒██▒ ▓█   ▓██▒▒██░   ▓██░ ▓█   ▓██▒                              |\n";
+        std::cout << "|                              ░ ▓░▒ ▒     ██▒▒▒  ░▒   ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒   ▓▒█░                              |\n";
+        std::cout << "|                                ▒ ░ ░   ▓██ ░▒░   ░   ░   ░▒ ░ ▒░  ▒   ▒▒ ░░ ░░   ░ ▒░  ▒   ▒▒ ░                              |\n";
+        std::cout << "|                                ░   ░   ▒ ▒ ░░  ░ ░   ░   ░░   ░   ░   ▒      ░   ░ ░   ░   ▒                                 |\n";
+        std::cout << "|                                  ░     ░ ░           ░    ░           ░  ░         ░       ░  ░                              |\n";
+        std::cout << "|                                        ░ ░                                                                                   |\n";
+        scianka();
+        std::cout << "|                                    ";
+        std::cout << "dobrze! udało ci się zgadnąć liczbę " << cel;
+        if(cel < 100)std::cout << " "; // musza byc zeby rameczka sie zgadzala
+        if(cel < 10)std::cout << " ";
+        std::cout << " w " << ilprob;
+        if(ilprob < 100)std::cout << " "; //tu to co wyzej
+        if(ilprob < 10)std::cout << " ";
+        std::cout << " probach!                                    |\n";
 
+        scianka();
+
+        std::cout << "|                                podaj swoje imię, aby dodać je do tablicy najlepszych wynikow.                                |\n";
+        scianka();
+        belka();
+        std::cin >> imie;
+    }
 
 }
 
@@ -427,19 +558,23 @@ int main(){
         std::cin >> wybortryb;
 
         if(wybortryb == "start"){
+
+            
             // zmienne z funkcji glownagra, zmienione po referencji
             int proby;
             std::string gracz;
             std::string trud;
+            bool przegrana;
 
             //odpalanie glownejgry i wyciaganie z niej jej zmiennych przy uzyciu referencji
-            glownagra(gracz, proby, trud);
+            glownagra(gracz, proby, trud, przegrana);
 
-            
-            // dodawanie wyniku z gry do vectorow
-            tabgracz.push_back(gracz);
-            tabproby.push_back(proby);
-            tabtrud.push_back(trud);
+            if(przegrana != true){
+                // dodawanie wyniku z gry do vectorow (tylko jesli gracz nie przegral)
+                tabgracz.push_back(gracz);
+                tabproby.push_back(proby);
+                tabtrud.push_back(trud);
+            }
         }   
 
         // caly drugi ekran z tabela wynikow mozna odpalic dopiero jesli w vektorze cos jest
