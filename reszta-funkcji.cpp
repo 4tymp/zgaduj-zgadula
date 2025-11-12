@@ -51,6 +51,7 @@ void wczytajwynik(std::vector<std::string> &gracz, std::vector<int> &proby, std:
         std::cout << "|                                               ! nie udalo sie otworzyc pliku !                                               |\n";
         scianka();
         belka();
+        return;
     }
 
     //czyszczenie wektorow dla pewnosci czystosci przed zaladowaniem
