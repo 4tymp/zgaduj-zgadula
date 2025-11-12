@@ -5,7 +5,7 @@
 
 void zapiszwynik(const std::vector<std::string> &gracz, const std::vector<int> &proby, const std::vector<std::string> &trudnosc);
 
-void wczytajwynik();
+void wczytajwynik(std::vector<std::string> &gracz, std::vector<int> &proby, std::vector<std::string> &trudnosc);
 
 void czysci();
 

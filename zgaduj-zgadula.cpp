@@ -150,6 +150,12 @@ int main(){
                 
                     std::cin >> tabokno;
                 }
+                //wczytywanie wynikow z pliku po wpisaniu wczytaj
+                if(tabokno == "wczytaj"){
+                    wczytajwynik(tabgracz,tabproby,tabtrud);
+
+                    std::cin >> tabokno;
+                }
             }
 
         }

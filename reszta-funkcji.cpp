@@ -37,8 +37,57 @@ void zapiszwynik(const std::vector<std::string> &gracz, const std::vector<int> &
     
 }
 
-void wczytajwynik(){
+void wczytajwynik(std::vector<std::string> &gracz, std::vector<int> &proby, std::vector<std::string> &trudnosc){
+    //zmienne pozniej podpisujace odpowiednie dane do vectorow
+    std::string wyngracz;
+    int wynproby;
+    std::string wyntrudnosc; 
 
+    std::ifstream plik("wyniki.txt"); //otwiera plik z naczymi wynikami
+
+    if(plik.is_open() == false){
+        belka();
+        scianka();
+        std::cout << "|                                               ! nie udalo sie otworzyc pliku !                                               |\n";
+        scianka();
+        belka();
+    }
+
+    //czyszczenie wektorow dla pewnosci czystosci przed zaladowaniem
+    gracz.clear();
+    proby.clear();
+    trudnosc.clear();
+
+    
+
+    std::string wiersz; //zmienna czytajaca kazdy wiersz z pliku ( a kazdy wiersz to jeden zapisany wynik )
+    while(std::getline(plik,wiersz)){//wczytuje jedna linie (wiersz) z pliku
+        //szukanie separatorow w linii (naszych ;)
+        size_t pozycja1 = wiersz.find(";"); //nowy typ zmiennej! unsigned int, czyli moze pomiescic teoretycznie kazda liczbe (tak to rozumiem XD)
+        size_t pozycja2 = wiersz.find(";", pozycja1 + 1) ;
+
+        //wycinanie odpowiedniego fragmentu z pliku uzywajac substr od 0 (pierwszej pozycji) do wczenisje okreslonej pozycji
+        wyngracz = wiersz.substr(0 , pozycja1);
+        wynproby = std::stoi(wiersz.substr(pozycja1+1, pozycja2 - pozycja1 -1)); // stoi - konwersja tekstu na liczbe
+        wyntrudnosc = wiersz.substr(pozycja2+1);
+        
+        //wrzucanie pobranych danych do vectorow
+        gracz.push_back(wyngracz);
+        proby.push_back(wynproby);
+        trudnosc.push_back(wyntrudnosc);
+    }
+
+    //zamykanie pliku po odczycie
+    plik.close();
+
+    //info o udanym wczytaniu
+    belka();
+    scianka();
+    std::cout << "|                                                  wyniki wczytano pomyslnie!                                                  |\n";
+    scianka();
+    std::cout << "|                                            podaj poziom trudnosci aby kontynuowac                                            |\n";
+    scianka();
+    belka();
 }
 
 std::string losowawiadomosc(int los,int &proba){
