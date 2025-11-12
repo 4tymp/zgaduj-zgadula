@@ -137,14 +137,19 @@ int main(){
                 std::cout << "|                                 wybierz poziom trudnosci dla jakiego chcesz zobaczyc tabele:                                 |" << "\n";
                 std::cout << "|                                                    latwy | sredni | trudny                                                   |" << "\n";
                 scianka();
-                
-
+                std::cout << "|                              zapisz - ZAPISZ WYNIKI DO PLIKU   wczytaj - WCZYTAJ WYNIKI Z PLIKU                              |\n";
                 std::cout << "|                                               wyjdz - POWROT DO MENU GLOWNEGO                                                |" << "\n";
                 belka();
                 
                 //sluchanie wyjscia, jezeli wpisane bedzie exit to wrocimy do menu, inaczej powinno wyswietlic dobra tabele
                 std::cin >> tabokno;
 
+                //zapisywanie wynikow do pliku po wpisaniu zapisz
+                if(tabokno == "zapisz"){
+                    zapiszwynik(tabgracz, tabproby, tabtrud);
+                
+                    std::cin >> tabokno;
+                }
             }
 
         }

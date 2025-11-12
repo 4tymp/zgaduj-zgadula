@@ -1,9 +1,44 @@
 #include "reszta-funkcji.hpp"
+#include "ascii.hpp"
 
 void czysci(){ // funkcja czyszczaca ekran ( portable! )
     for (int i=0;i<100;i++){
         std::cout << "\n";
     }
+}
+
+void zapiszwynik(const std::vector<std::string> &gracz, const std::vector<int> &proby, const std::vector<std::string> &trudnosc){
+    std::ofstream plik("wyniki.txt"); // tworzy obiekt plik typu output file stream, otwiera (lub tworzy jezeli brak) plik wyniki.txt
+
+    //sprawdzanie czy plik jest poprawnie otwarty
+    if(plik.is_open() == false){
+        belka();
+        scianka();
+        std::cout << "|                                            ! blad nie udalo sie zapisac wynikow !                                            |\n";
+        scianka();
+        belka();
+        return; // konczy funkcje
+    }
+    
+    //petla wypisujaca wyniki do pliku
+    for (int i = 0; i < gracz.size(); i++){
+        plik << gracz[i] << ";" << proby[i] << ";" << trudnosc[i] << "\n";
+    }
+
+    plik.close(); // zamkniecie pliku
+
+    belka();
+    scianka();
+    std::cout << "|                                                  wyniki zapisano pomyslnie                                                   |\n";
+    scianka();
+    std::cout << "|                                           wybierz jakakolwiek opcje aby kontynuowac                                          |\n";
+    scianka();
+    belka();
+    
+}
+
+void wczytajwynik(){
+
 }
 
 std::string losowawiadomosc(int los,int &proba){
